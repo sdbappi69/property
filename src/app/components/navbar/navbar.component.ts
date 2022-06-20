@@ -6,6 +6,8 @@ import { select, Store } from '@ngrx/store';
 import { selectorUserFirstAndLastNames } from '../../authentication/authentication.selectors';
 import { AuthenticationService } from '../../authentication/authentication.service';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { AuthActions } from '../../authentication/action-types';
 
 @Component({
   selector: 'robi-navbar',
@@ -18,11 +20,13 @@ export class NavbarComponent implements OnInit {
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    loading = false;
 
     userNames$: any;
     isAdmin$: Observable<boolean>;
     constructor(location: Location,  private element: ElementRef,
                 private authenticationService: AuthenticationService,
+                private auth: AuthenticationService,
                 private router: Router, private store: Store) {
         this.isAdmin$ = this.authenticationService.isAdmin();
         this.location = location;
@@ -133,4 +137,28 @@ export class NavbarComponent implements OnInit {
       }
       return 'Dashboard';
     }
+
+        /**
+     * Logout user
+     */
+         logout() {
+            this.loading = true;
+            this.auth.logout()
+                .pipe(
+                    tap(
+                    user => {
+                        this.loading = false;
+                        this.store.dispatch(AuthActions.actionLogout());
+                    }
+                ))
+                .subscribe(
+                    () => {},
+                    (error) => {
+                        this.store.dispatch(AuthActions.actionLogout());
+                        if (error.error.message) {
+                        } else {
+                        }
+                        this.loading = false;
+                    });
+        }
 }

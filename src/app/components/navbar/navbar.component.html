@@ -34,15 +34,20 @@
                     <mat-menu #menu="matMenu" class="pb-0 pt-0">
                         <button mat-menu-item>
                             <a class="nav-link" [routerLink]="['/profile']">
-                                <mat-icon>person</mat-icon>
+                                <mat-icon class="text-java">person</mat-icon>
                                 <span>Profile</span>
                             </a>
                         </button>
-                        <hr class="mb-0 mt-2">
                         <button mat-menu-item>
                             <a class="nav-link" [routerLink]="['/settings']">
-                                <mat-icon>settings</mat-icon>
+                                <mat-icon class="text-java">settings</mat-icon>
                                 <span>Settings</span>
+                            </a>
+                        </button>
+                        <button mat-menu-item>
+                            <a class="nav-link" (click)="logout()">
+                                <mat-icon class="text-java">power_settings_new</mat-icon>
+                                <span>Logout</span>
                             </a>
                         </button>
                     </mat-menu>
