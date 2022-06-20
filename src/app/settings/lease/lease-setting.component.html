@@ -1,14 +1,11 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-header card-header-info">
-                <p class="card-category">Lease Settings</p>
-            </div>
-
+        <div class="card mt-0">
             <div class="card-body">
+                <h6 class="card-category">Lease Settings</h6>
+                <hr>
 
                 <nav mat-tab-nav-bar>
-
                     <a mat-tab-link routerLinkActive #lease="routerLinkActive" [active]="lease.isActive" [routerLinkActiveOptions]="{exact: true}"
                        [routerLink]="['/settings/lease']">
                         <span class="nav-text"> General</span></a>
@@ -17,11 +14,7 @@
                        [routerLinkActiveOptions]="{exact: true}" [routerLink]="['lease_type']">
                         <span class="nav-text"> Lease Types</span></a>
                 </nav>
-
-
-
                 <router-outlet></router-outlet>
-
             </div>
         </div>
     </div>

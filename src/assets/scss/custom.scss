@@ -199,3 +199,12 @@
   color: #046162;
   cursor: pointer;
 }
+
+.setting-contens {
+  .nav-link {
+    color: black;
+  }
+  .active {
+    background-color: #046162 !important;
+  }
+}

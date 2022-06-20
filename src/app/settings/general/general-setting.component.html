@@ -1,11 +1,12 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-header card-header-info">
+        <div class="card mt-0">
+            <!-- <div class="card-header card-header-info">
                 <p class="card-category"> {{ 'robi.settings.general.title' | translate }}</p>
-            </div>
+            </div> -->
             <div class="card-body">
-
+                <h6>{{ 'robi.settings.general.title' | translate }}</h6>
+                <hr>
                 <ng-container *ngIf="settings$ | async as settings">
 
                     <form [formGroup] = "form" (ngSubmit)="onSubmit()">
@@ -78,7 +79,8 @@
                                     </figure>
                                     <div>
                                         <input type="file" #logoFileInput class="file-input" accept="image/*" (change)="onProfilePhotoSelect($event.target.files)">
-                                        <button mat-button class="mat-raised-button" (click)="logoFileInput.click()">
+                                        <button mat-button class="mat-raised-button" style="width: 100%; border: 1px solid #ccc;" 
+                                            (click)="logoFileInput.click()">
                                             <i class="material-icons">attachment</i>
                                             Logo</button>
                                     </div>
@@ -180,7 +182,7 @@
                         </div>
 
                         <div>
-                            <button mat-raised-button type="submit" class="btn pull-right" color="accent"
+                            <button mat-raised-button type="submit" class="btn pull-right mat-primary-button" color="accent"
                                     (click)="update()" [disabled]="!form.valid || loader">Update Settings</button>
                         </div>
 
