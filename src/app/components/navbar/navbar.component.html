@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-wrapper">
+            <ng-container class="navbar-brand" *ngIf="userNames$ | async as names">
+                Welcome, {{names}}
+            </ng-container>
+        </div>
+        <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="navbar-nav" *ngIf="isAdmin$ | async">
+                <!-- <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/settings']">
+                        <i class="material-icons">settings</i>
+                        <p>
+                            <span class="d-lg-none d-md-block">settings</span>
+                        </p>
+                    </a>
+                </li> -->
+
+                <li class="nav-item">
+                    <!-- <a class="nav-link" [routerLink]="['/profile']">
+                        <i class="material-icons">person</i>
+                    </a> -->
+
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <i class="material-icons">person</i>
+                    </button>
+                    <mat-menu #menu="matMenu" class="pb-0 pt-0">
+                        <button mat-menu-item>
+                            <a class="nav-link" [routerLink]="['/profile']">
+                                <mat-icon>person</mat-icon>
+                                <span>Profile</span>
+                            </a>
+                        </button>
+                        <hr class="mb-0 mt-2">
+                        <button mat-menu-item>
+                            <a class="nav-link" [routerLink]="['/settings']">
+                                <mat-icon>settings</mat-icon>
+                                <span>Settings</span>
+                            </a>
+                        </button>
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

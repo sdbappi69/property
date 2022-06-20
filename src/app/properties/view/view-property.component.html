@@ -1,0 +1,84 @@
+<div class="main-content">
+    <ng-template #no_data>
+        <div class="not-found">
+            <mat-icon>error</mat-icon> Not Found
+        </div>
+    </ng-template>
+    <div class="container-fluid" *ngIf="propertyData$ | async as property; else no_data">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- <div class="card mt-0">
+                        <div class="card-body"> -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card mt-0 mb-0">
+                            <div class="card-body">
+                                <nav mat-tab-nav-bar>
+                                    <a mat-tab-link routerLinkActive #general="routerLinkActive"
+                                        [active]="general.isActive" [routerLinkActiveOptions]="{exact: true}"
+                                        routerLink="/properties/{{propertyID}}">
+                                        <span class="nav-text"> Info </span></a>
+
+                                    <a mat-tab-link routerLinkActive #units="routerLinkActive" [active]="units.isActive"
+                                        [routerLink]="['units']">
+                                        <span class="nav-text"> Units </span></a>
+
+                                    <a mat-tab-link routerLinkActive #leases="routerLinkActive"
+                                        [active]="leases.isActive" [routerLink]="['leases']">
+                                        <span class="nav-text"> Leases </span></a>
+
+                                    <a mat-tab-link routerLinkActive #invoices="routerLinkActive"
+                                        [active]="invoices.isActive" [routerLink]="['invoices']">
+                                        <span class="nav-text"> Invoices </span></a>
+
+                                    <a mat-tab-link routerLinkActive #notices="routerLinkActive"
+                                        [active]="notices.isActive" [routerLink]="['notices']">
+                                        <span class="nav-text"> Vacate Notices </span></a>
+                                </nav>
+                            </div>
+                        </div>
+                        <router-outlet></router-outlet>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mt-0">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="card-category"> Total Units: </div>
+                                        <div>{{property?.total_units}}</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="card-category"> Occupied: </div>
+                                        <div>{{(property?.total_units) - (property?.total_vacant_units)}}</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="card-category text-danger"> Vacant: </div>
+                                        <div>{{property?.total_vacant_units}}</div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="card-category text-gray"> Name: </div>
+                                        <div>{{property?.property_name}}</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card-category text-gray"> Code: </div>
+                                        <div>{{property?.property_code}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="card-category text-gray"> Location: </div>
+                                <div>{{property?.location}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- </div>
+</div> -->
