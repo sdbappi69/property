@@ -53,7 +53,7 @@
                             <mat-cell *matCellDef="let row" class="button-row">
                                     <button [disabled]="loader" mat-icon-button matTooltip="View Account Statement."
                                             [matTooltipPosition]="'above'" (click)="viewStatement(row)">
-                                        <mat-icon color="primary">visibility</mat-icon>
+                                        <mat-icon color="primary" class="text-java">visibility</mat-icon>
                                     </button>
                                     <button [disabled]="loader" mat-icon-button matTooltip="Download Account Statement."
                                             [matTooltipPosition]="'above'" (click)="viewPdfStatement(row)">

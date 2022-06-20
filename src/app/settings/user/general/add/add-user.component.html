@@ -106,6 +106,6 @@
 </div>
 
 <mat-dialog-actions align="center">
-    <button [disabled]="loader" mat-button class="mr-2" color="accent" [mat-dialog-close]="true" (click)="close()">Cancel</button>
-    <button mat-raised-button  color="primary" (click)="createOrUpdate()" [disabled]="!form.valid || loader">Save</button>
+    <button [disabled]="loader" mat-button class="mr-2 text-java" color="accent" [mat-dialog-close]="true" (click)="close()">Cancel</button>
+    <button mat-raised-button class="mat-primary-button" color="primary" (click)="createOrUpdate()" [disabled]="!form.valid || loader">Save</button>
 </mat-dialog-actions>

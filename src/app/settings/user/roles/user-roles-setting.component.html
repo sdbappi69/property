@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="fab-container">
+    <!-- <div class="fab-container">
         <button mat-fab class="fab-toggler" (click)="addDialog()">
             <mat-icon>add</mat-icon>
         </button>
-    </div>
+    </div> -->
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
@@ -11,7 +11,7 @@
                 <div class="row search-form-section">
 
                     <div class="col-3">
-                        <button mat-button matPrefix mat-stroked-button aria-label="add new" (click)="addDialog()">
+                        <button class="mat-primary-button" mat-button matPrefix mat-stroked-button aria-label="add new" (click)="addDialog()">
                             <mat-icon>add</mat-icon> New Role
                         </button>
                     </div>
@@ -48,7 +48,7 @@
                             <mat-header-cell *matHeaderCellDef> Actions  </mat-header-cell>
                             <mat-cell *matCellDef="let row" class="button-row">
                                 <button #editButton mat-icon-button matTooltip="Edit / Assign Permissions" [matTooltipPosition]="'above'" (click)="editDialog(row)">
-                                    <mat-icon color="accent">edit</mat-icon>
+                                    <mat-icon color="accent" class="text-java">edit</mat-icon>
                                     Edit / Assign Permissions
                                 </button>
                             </mat-cell>

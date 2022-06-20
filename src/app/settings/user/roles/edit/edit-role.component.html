@@ -48,6 +48,6 @@
     <button [disabled]="loader" mat-button class="mr-2" color="warn"
             (click)="deleting()"> <mat-icon>delete</mat-icon>Delete
     </button>
-    <button [disabled]="loader" mat-button class="mr-2" color="accent" [mat-dialog-close]="true" (click)="close()">Cancel</button>
-    <button mat-raised-button  color="primary" (click)="update()" [disabled]="!editForm.valid || loader">Save</button>
+    <button [disabled]="loader" mat-button class="mr-2 text-java" color="accent" [mat-dialog-close]="true" (click)="close()">Cancel</button>
+    <button mat-raised-button class="mat-primary-button"  color="primary" (click)="update()" [disabled]="!editForm.valid || loader">Save</button>
 </mat-dialog-actions>

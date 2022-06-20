@@ -1,21 +1,18 @@
 <div class="row">
-    <div class="fab-container">
+    <!-- <div class="fab-container">
         <button mat-fab class="fab-toggler" (click)="addDialog()">
             <mat-icon>add</mat-icon>
         </button>
-    </div>
+    </div> -->
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-
                 <div class="row search-form-section">
-
                     <div class="col-3">
-                        <button [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
+                        <button class="mat-primary-button" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
                                 (click)="addDialog()">
                             <mat-icon>add</mat-icon> New User
                         </button>
-
                     </div>
 
                     <div class="col-9">
@@ -58,8 +55,9 @@
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item (click)="addDialog(false, row)">
-                                        <mat-icon color="accent">edit</mat-icon>
+                                    <button mat-menu-item (click)="addDialog(false, row)" 
+                                        style="border-bottom: 1px solid #ccc;">
+                                        <mat-icon color="accent" class="text-java">edit</mat-icon>
                                         <span>Edit</span>
                                     </button>
                                     <button mat-menu-item (click)="openConfirmationDialog(row)">
