@@ -89,19 +89,19 @@
                                             <mat-icon>more_vert</mat-icon>
                                         </button>
                                         <mat-menu #menu="matMenu">
-                                            <button mat-menu-item matTooltip="View Payment Details." [matTooltipPosition]="'above'"
+                                            <button mat-menu-item matTooltipClass='red-tooltip' matTooltip="View Payment Details." [matTooltipPosition]="'above'"
                                                     (click)="paymentDetails(row, true)">
                                                 <mat-icon color="primary" class="text-java">visibility</mat-icon>
                                                 <span>View</span>
                                             </button>
-                                            <button mat-menu-item matTooltip="View Payment Details." [matTooltipPosition]="'above'"
+                                            <button mat-menu-item matTooltipClass='red-tooltip' matTooltip="View Payment Details." [matTooltipPosition]="'above'"
                                                     routerLink="{{row.id}}" (click)="onSelected(row)">
                                                 <mat-icon color="primary" class="text-java">picture_as_pdf</mat-icon>
                                                 <span>Receipt</span>
                                             </button>
                                             <ng-container *robiPermission="['approve-payment']">
                                                 <ng-container *ngIf="isAdmin$ | async">
-                                                    <button *ngIf="row.is_pending" mat-menu-item matTooltip="Approve Payment." [matTooltipPosition]="'above'"
+                                                    <button *ngIf="row.is_pending" matTooltipClass='red-tooltip' mat-menu-item matTooltip="Approve Payment." [matTooltipPosition]="'above'"
                                                             (click)="approvePayment(row)">
                                                         <mat-icon class="text-success" color="">check_circle</mat-icon>
                                                         <span>Approve</span>
@@ -110,7 +110,7 @@
                                             </ng-container>
                                             <ng-container *robiPermission="['cancel-payment']">
                                                 <ng-container *ngIf="isAdmin$ | async">
-                                                    <button *ngIf="row.is_pending" mat-menu-item matTooltip="Cancel Payment." [matTooltipPosition]="'above'"
+                                                    <button *ngIf="row.is_pending" matTooltipClass='red-tooltip' mat-menu-item matTooltip="Cancel Payment." [matTooltipPosition]="'above'"
                                                             (click)="cancelPayment(row)">
                                                         <mat-icon color="warn">highlight_off</mat-icon>
                                                         <span>Cancel</span>

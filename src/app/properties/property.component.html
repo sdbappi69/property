@@ -69,13 +69,13 @@
                                 <ng-container matColumnDef="actions">
                                     <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
                                     <mat-cell *matCellDef="let row" class="button-row">
-                                        <button mat-raised-button type="button" matTooltip="View Property" [matTooltipPosition]="'above'"
+                                        <button mat-raised-button type="button" matTooltipClass='red-tooltip' matTooltip="View Property" [matTooltipPosition]="'above'"
                                                 class="btn btn-link btn-sm btn-just-icon" routerLink="{{row.id}}" (click)="onSelected(row)">
                                             <i class="material-icons">expand_more</i>
                                         </button>
 
                                         <ng-container *robiPermission="['edit-property', 'delete-property']">
-                                        <button *ngIf="isAdmin$ | async" mat-raised-button type="button" matTooltip="Edit Property" [matTooltipPosition]="'above'"
+                                        <button *ngIf="isAdmin$ | async" mat-raised-button type="button" matTooltipClass='red-tooltip' matTooltip="Edit Property" [matTooltipPosition]="'above'"
                                                 class="btn btn-link btn-sm btn-just-icon"
                                                 routerLink="{{row.id}}/edit" (click)="onSelected(row)">
                                             <i class="material-icons">edit</i>

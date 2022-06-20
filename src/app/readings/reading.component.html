@@ -71,20 +71,20 @@
                                 <ng-container matColumnDef="actions">
                                     <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
                                     <mat-cell *matCellDef="let row" class="button-row">
-                                        <button mat-raised-button type="button" matTooltip="View Readings" [matTooltipPosition]="'above'"
+                                        <button mat-raised-button type="button" matTooltipClass='red-tooltip'  matTooltip="View Readings" [matTooltipPosition]="'above'"
                                                 class="btn btn-link btn-sm btn-just-icon" routerLink="{{row.id}}"
                                                 (click)="onSelected(row)">
                                             <i class="material-icons">expand_more</i>
                                         </button>
 
                                         <ng-container *robiPermission="['edit-reading', 'delete-reading']">
-                                        <button mat-raised-button type="button" matTooltip="Edit Readings"
+                                        <button mat-raised-button type="button" matTooltipClass='red-tooltip'  matTooltip="Edit Readings"
                                                 [matTooltipPosition]="'above'"
                                                 class="btn btn-link btn-sm btn-just-icon"  (click)="editDialog(false, row)">
                                             <i class="material-icons">edit</i>
                                         </button>
                                         </ng-container>
-                                        <button mat-raised-button type="button" matTooltip="Delete Readings"
+                                        <button mat-raised-button type="button" matTooltipClass='red-tooltip'  matTooltip="Delete Readings"
                                                 [matTooltipPosition]="'above'" color="warn"
                                                 class="btn btn-link btn-sm btn-just-icon"  (click)="openConfirmationDialog(row)">
                                             <i class="material-icons">delete</i>

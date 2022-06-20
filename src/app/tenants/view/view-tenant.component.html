@@ -19,7 +19,7 @@
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item matTooltip="Edit Tenant." [matTooltipPosition]="'above'"
+                                    <button mat-menu-item matTooltipClass='red-tooltip'  matTooltip="Edit Tenant." [matTooltipPosition]="'above'"
                                         routerLink="edit" (click)="onSelected(tenant)">
                                         <mat-icon>edit</mat-icon>
                                         <span>Edit Tenant</span>

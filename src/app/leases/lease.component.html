@@ -89,7 +89,7 @@
                                 <ng-container matColumnDef="statement">
                                     <mat-header-cell *matHeaderCellDef> Statement </mat-header-cell>
                                     <mat-cell *matCellDef="let row">
-                                        <button [disabled]="loader" mat-icon-button matTooltip="Download Account Statement."
+                                        <button [disabled]="loader" matTooltipClass='red-tooltip' mat-icon-button matTooltip="Download Account Statement."
                                                 [matTooltipPosition]="'above'" (click)="viewPdfStatement(row)">
                                             <mat-icon>picture_as_pdf</mat-icon>
                                         </button>
@@ -102,7 +102,7 @@
                                         <ng-container *robiPermission="['edit-lease', 'delete-lease']">
                                         <ng-container *ngIf="isAdmin$ | async">
                                             <button *ngIf="row?.terminated_on == null" mat-raised-button type="button" matTooltip="Edit Lease"
-                                                    [matTooltipPosition]="'above'" class="btn btn-link btn-sm btn-just-icon"
+                                                matTooltipClass='red-tooltip' [matTooltipPosition]="'above'" class="btn btn-link btn-sm btn-just-icon"
                                                     routerLink="{{row.id}}/edit" (click)="onSelected(row)">
                                                 <i class="material-icons">edit</i>
                                             </button>

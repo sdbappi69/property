@@ -52,12 +52,12 @@
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item matTooltip="Edit Amenity." 
+                                    <button mat-menu-item matTooltipClass='red-tooltip'  matTooltip="Edit Amenity." 
                                     style="border-bottom: 1px solid #ccc;" [matTooltipPosition]="'above'" (click)="addDialog(false, row)">
                                         <mat-icon color="primary" class="text-java">edit</mat-icon>
                                         <span>Edit</span>
                                     </button>
-                                    <button mat-menu-item matTooltip="Delete Amenity." [matTooltipPosition]="'above'" (click)="openConfirmationDialog(row)">
+                                    <button mat-menu-item matTooltipClass='red-tooltip'  matTooltip="Delete Amenity." [matTooltipPosition]="'above'" (click)="openConfirmationDialog(row)">
                                         <mat-icon color="warn">delete</mat-icon>
                                         <span>Delete</span>
                                     </button>

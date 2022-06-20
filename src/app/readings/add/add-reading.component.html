@@ -118,12 +118,12 @@
                                     <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 mt-md-3 mt-lg-3 mt-xl-3">
                                         <button class="btn btn-link btn-sm btn-just-icon" (click)="utilityBillFieldCopy(i)"
                                                 mat-icon-button aria-label="Copy to New Unit"
-                                                matTooltip="Copy to New Unit" [matTooltipPosition]="'above'">
+                                                matTooltipClass='red-tooltip'  matTooltip="Copy to New Unit" [matTooltipPosition]="'above'">
                                             <mat-icon>file_copy</mat-icon>
                                         </button>
                                         <button class="btn btn-link btn-sm btn-just-icon" (click)="utilityBillFieldRemove(i)"
                                                 mat-icon-button color="accent" aria-label="Remove Unit"
-                                                matTooltip="Remove Unit" [matTooltipPosition]="'above'">
+                                                matTooltipClass='red-tooltip'  matTooltip="Remove Unit" [matTooltipPosition]="'above'">
                                             <mat-icon color="warn">close</mat-icon>
                                         </button>
                                     </div>
@@ -134,7 +134,7 @@
                                 <div class="col-6">
                                     <button (click)="utilityBillFieldAdd()"
                                             class="mat-stroked-button mat-accent mb-3" mat-button type="button"
-                                            matTooltip="Add Unit" [matTooltipPosition]="'above'">
+                                            matTooltipClass='red-tooltip'  matTooltip="Add Unit" [matTooltipPosition]="'above'">
                                         <mat-icon color="material-icons">add</mat-icon>
                                         <span>Another Unit</span>
                                     </button>

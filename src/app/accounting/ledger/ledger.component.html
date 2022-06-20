@@ -51,11 +51,11 @@
                         <ng-container matColumnDef="actions">
                             <mat-header-cell *matHeaderCellDef> Statement  </mat-header-cell>
                             <mat-cell *matCellDef="let row" class="button-row">
-                                    <button [disabled]="loader" mat-icon-button matTooltip="View Account Statement."
+                                    <button [disabled]="loader" matTooltipClass='red-tooltip' mat-icon-button matTooltip="View Account Statement."
                                             [matTooltipPosition]="'above'" (click)="viewStatement(row)">
                                         <mat-icon color="primary" class="text-java">visibility</mat-icon>
                                     </button>
-                                    <button [disabled]="loader" mat-icon-button matTooltip="Download Account Statement."
+                                    <button [disabled]="loader" matTooltipClass='red-tooltip' mat-icon-button matTooltip="Download Account Statement."
                                             [matTooltipPosition]="'above'" (click)="viewPdfStatement(row)">
                                         <mat-icon>picture_as_pdf</mat-icon>
                                     </button>

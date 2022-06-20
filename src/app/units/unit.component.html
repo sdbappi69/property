@@ -62,7 +62,7 @@
                                 <ng-container matColumnDef="actions">
                                     <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
                                     <mat-cell *matCellDef="let row" class="button-row">
-                                        <button mat-raised-button type="button" matTooltip="Edit Property" [matTooltipPosition]="'above'"
+                                        <button mat-raised-button type="button" matTooltipClass='red-tooltip'  matTooltip="Edit Property" [matTooltipPosition]="'above'"
                                                 class="btn btn-link btn-sm btn-just-icon" (click)="addDialog(false, row)">
                                             <i class="material-icons">edit</i>
                                         </button>

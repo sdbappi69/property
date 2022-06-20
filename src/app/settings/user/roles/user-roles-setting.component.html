@@ -47,7 +47,7 @@
                         <ng-container matColumnDef="actions">
                             <mat-header-cell *matHeaderCellDef> Actions  </mat-header-cell>
                             <mat-cell *matCellDef="let row" class="button-row">
-                                <button #editButton mat-icon-button matTooltip="Edit / Assign Permissions" [matTooltipPosition]="'above'" (click)="editDialog(row)">
+                                <button #editButton mat-icon-button matTooltipClass='red-tooltip'  matTooltip="Edit / Assign Permissions" [matTooltipPosition]="'above'" (click)="editDialog(row)">
                                     <mat-icon color="accent" class="text-java">edit</mat-icon>
                                     Edit / Assign Permissions
                                 </button>

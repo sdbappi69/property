@@ -130,12 +130,12 @@
                                                         <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 mt-md-3 mt-lg-3 mt-xl-3">
                                                             <button class="btn btn-link btn-sm btn-just-icon" (click)="copyUnitField(i)"
                                                                     mat-icon-button aria-label="Copy to New Unit"
-                                                                    matTooltip="Copy to New Unit" [matTooltipPosition]="'above'">
+                                                                    matTooltipClass='red-tooltip'  matTooltip="Copy to New Unit" [matTooltipPosition]="'above'">
                                                                 <mat-icon>file_copy</mat-icon>
                                                             </button>
                                                             <button class="btn btn-link btn-sm btn-just-icon" (click)="removeUnitField(i)"
                                                                     mat-icon-button color="accent" aria-label="Remove Unit"
-                                                                    matTooltip="Remove Unit" [matTooltipPosition]="'above'">
+                                                                    matTooltipClass='red-tooltip'  matTooltip="Remove Unit" [matTooltipPosition]="'above'">
                                                                 <mat-icon color="warn">close</mat-icon>
                                                             </button>
                                                         </div>
@@ -146,7 +146,7 @@
                                                 <div class="row mb-4" *ngIf="isAdd">
                                                     <div class="col-6">
                                                         <button mat-button color="accent" (click)="addUnitField()"
-                                                                matTooltip="Add Unit" [matTooltipPosition]="'above'">
+                                                                matTooltipClass='red-tooltip'  matTooltip="Add Unit" [matTooltipPosition]="'above'">
                                                             <mat-icon>add_circle_outline</mat-icon>
                                                             Add Another Unit
                                                         </button>
@@ -218,12 +218,12 @@
                                             <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 mt-md-3 mt-lg-3 mt-xl-3">
                                                 <button class="btn btn-link btn-sm btn-just-icon" (click)="paymentMethodFieldCopy(i)"
                                                         mat-icon-button aria-label="Copy to New Field"
-                                                        matTooltip="Copy to New Field" [matTooltipPosition]="'above'">
+                                                        matTooltipClass='red-tooltip'  matTooltip="Copy to New Field" [matTooltipPosition]="'above'">
                                                     <mat-icon>file_copy</mat-icon>
                                                 </button>
                                                 <button class="btn btn-link btn-sm btn-just-icon" (click)="paymentMethodFieldRemove(i)"
                                                         mat-icon-button color="accent" aria-label="Remove Field"
-                                                        matTooltip="Remove Field" [matTooltipPosition]="'above'">
+                                                        matTooltipClass='red-tooltip'  matTooltip="Remove Field" [matTooltipPosition]="'above'">
                                                     <mat-icon color="warn">close</mat-icon>
                                                 </button>
                                             </div>
@@ -232,7 +232,7 @@
                                     <div class="row mb-4">
                                         <div class="col-6">
                                             <button mat-button color="accent" (click)="paymentMethodFieldAdd()"
-                                                    matTooltip="Add Field" [matTooltipPosition]="'above'">
+                                                    matTooltipClass='red-tooltip'  matTooltip="Add Field" [matTooltipPosition]="'above'">
                                                 <mat-icon>add_circle_outline</mat-icon>
                                                 Add Another Payment Method
                                             </button>
@@ -307,12 +307,12 @@
                                             <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 mt-md-3 mt-lg-3 mt-xl-3">
                                                 <button class="btn btn-link btn-sm btn-just-icon" (click)="extraChargeFieldCopy(i)"
                                                         mat-icon-button aria-label="Copy to New Field"
-                                                        matTooltip="Copy to New Field" [matTooltipPosition]="'above'">
+                                                        matTooltipClass='red-tooltip'  matTooltip="Copy to New Field" [matTooltipPosition]="'above'">
                                                     <mat-icon>file_copy</mat-icon>
                                                 </button>
                                                 <button class="btn btn-link btn-sm btn-just-icon" (click)="extraChargeFieldRemove(i)"
                                                         mat-icon-button color="accent" aria-label="Remove Field"
-                                                        matTooltip="Remove Field" [matTooltipPosition]="'above'">
+                                                        matTooltipClass='red-tooltip'  matTooltip="Remove Field" [matTooltipPosition]="'above'">
                                                     <mat-icon color="warn">close</mat-icon>
                                                 </button>
                                             </div>
@@ -321,7 +321,7 @@
                                     <div class="row mb-4">
                                         <div class="col-6">
                                             <button mat-button color="accent" (click)="extraChargeFieldAdd()"
-                                                    matTooltip="Add Field" [matTooltipPosition]="'above'">
+                                                    matTooltipClass='red-tooltip'  matTooltip="Add Field" [matTooltipPosition]="'above'">
                                                 <mat-icon>add_circle_outline</mat-icon>
                                                 Add Another Charge
                                             </button>
@@ -406,12 +406,12 @@
                                                 <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 mt-md-3 mt-lg-3 mt-xl-3">
                                                     <button class="btn btn-link btn-sm btn-just-icon" (click)="lateFeeFieldCopy(i)"
                                                             mat-icon-button aria-label="Copy to New Field"
-                                                            matTooltip="Copy to New Field" [matTooltipPosition]="'above'">
+                                                            matTooltipClass='red-tooltip'  matTooltip="Copy to New Field" [matTooltipPosition]="'above'">
                                                         <mat-icon>file_copy</mat-icon>
                                                     </button>
                                                     <button class="btn btn-link btn-sm btn-just-icon" (click)="lateFeeFieldRemove(i)"
                                                             mat-icon-button color="accent" aria-label="Remove Field"
-                                                            matTooltip="Remove Field" [matTooltipPosition]="'above'">
+                                                            matTooltipClass='red-tooltip'  matTooltip="Remove Field" [matTooltipPosition]="'above'">
                                                         <mat-icon color="warn">close</mat-icon>
                                                     </button>
                                                 </div>
@@ -422,7 +422,7 @@
                                     <div class="row mb-4">
                                         <div class="col-6">
                                             <button mat-button color="accent" (click)="lateFeeFieldAdd()"
-                                                    matTooltip="Add Field" [matTooltipPosition]="'above'">
+                                                    matTooltipClass='red-tooltip'  matTooltip="Add Field" [matTooltipPosition]="'above'">
                                                 <mat-icon>add_circle_outline</mat-icon>
                                                 Add Another Late Fee
                                             </button>
@@ -483,12 +483,12 @@
                                             <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 mt-md-3 mt-lg-3 mt-xl-3">
                                                 <button class="btn btn-link btn-sm btn-just-icon" (click)="utilityFieldCopy(i)"
                                                         mat-icon-button aria-label="Copy to New Field"
-                                                        matTooltip="Copy to New Field" [matTooltipPosition]="'above'">
+                                                        matTooltipClass='red-tooltip'  matTooltip="Copy to New Field" [matTooltipPosition]="'above'">
                                                     <mat-icon>file_copy</mat-icon>
                                                 </button>
                                                 <button class="btn btn-link btn-sm btn-just-icon" (click)="utilityFieldRemove(i)"
                                                         mat-icon-button color="accent" aria-label="Remove Field"
-                                                        matTooltip="Remove Field" [matTooltipPosition]="'above'">
+                                                        matTooltipClass='red-tooltip'  matTooltip="Remove Field" [matTooltipPosition]="'above'">
                                                     <mat-icon color="warn">close</mat-icon>
                                                 </button>
                                             </div>
@@ -497,7 +497,7 @@
                                     <div class="row mb-4">
                                         <div class="col-6">
                                             <button mat-button color="accent" (click)="utilityFieldAdd()"
-                                                    matTooltip="Add Field" [matTooltipPosition]="'above'">
+                                                    matTooltipClass='red-tooltip'  matTooltip="Add Field" [matTooltipPosition]="'above'">
                                                 <mat-icon>add_circle_outline</mat-icon>
                                                 Add Another Utility
                                             </button>

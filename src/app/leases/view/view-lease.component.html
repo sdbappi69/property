@@ -14,7 +14,7 @@
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
-                                        <button *ngIf="lease?.terminated_on == null" mat-menu-item matTooltip="Edit Lease." [matTooltipPosition]="'above'"
+                                        <button *ngIf="lease?.terminated_on == null" matTooltipClass='red-tooltip' mat-menu-item matTooltip="Edit Lease." [matTooltipPosition]="'above'"
                                                 routerLink="edit" (click)="onSelected(lease)">
                                             <mat-icon>edit</mat-icon>
                                             <span>Edit Lease</span>
