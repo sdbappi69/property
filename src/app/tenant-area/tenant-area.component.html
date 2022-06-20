@@ -2,11 +2,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-accent">
-                        Past Payments
-                    </div>
+                <div class="card mt-0">
                     <div class="card-body">
+                        <h6>
+                            Past Payments
+                        </h6>
+                        <hr>
                         <div>
                             <div style="display: block">
                                 <canvas baseChart
@@ -26,7 +27,7 @@
 
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
+                <!-- <div class="card card-stats">
                     <div class="card-header card-header-info">
                             <p class="card-title">{{tenantSummary?.pending_amount}}</p>
                     </div>
@@ -35,10 +36,16 @@
                             Pending Amount
                         </div>
                     </div>
+                </div> -->
+                <div class="card mt-0">
+                    <div class="card-body">
+                        <h6>Pending Amount</h6>
+                        <h3>{{tenantSummary?.pending_amount}}</h3>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
+                <!-- <div class="card card-stats">
                     <div class="card-header card-header-accent">
                             <p class="card-title">{{tenantSummary?.total_leases}}</p>
                     </div>
@@ -47,12 +54,18 @@
                            Total Leases
                         </div>
                     </div>
+                </div> -->
+                <div class="card mt-0">
+                    <div class="card-body">
+                        <h6>Total Leases</h6>
+                        <h3>{{tenantSummary?.total_leases}}</h3>
+                    </div>
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info">
+                <div class="card mt-0">
+                    <div class="card-body">
                         <ng-container *ngFor="let lease of tenantSummary?.leases; let i = index;">
                             <tr>
                                 <td><p class="card-title">{{lease.property?.property_name}} </p></td>

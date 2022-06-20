@@ -2,11 +2,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-accent">
+                <div class="card mt-0">
+                    <!-- <div class="card-header card-header-accent">
                         Period Billing
-                    </div>
+                    </div> -->
                     <div class="card-body">
+                        <h6>Period Billing</h6>
+                        <hr>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div style="display: block">
@@ -65,42 +67,66 @@
 
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
+                <!-- <div class="card card-stats">
                     <div class="card-header card-header-accent">
                         <p class="card-title">{{landlordSummary?.pending_amount_as_currency}}</p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">Pending Amount</div>
                     </div>
+                </div> -->
+                <div class="card mt-0">
+                    <div class="card-body">
+                        <h6>Pending Amount</h6>
+                        <h3>{{landlordSummary?.pending_amount_as_currency}}</h3>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
+                <!-- <div class="card card-stats">
                     <div class="card-header card-header-info">
                         <p class="card-title">{{landlordSummary?.total_properties}}</p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">Properties</div>
                     </div>
+                </div> -->
+                <div class="card mt-0">
+                    <div class="card-body">
+                        <h6>Properties</h6>
+                        <h3>{{landlordSummary?.total_properties}}</h3>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
+                <!-- <div class="card card-stats">
                     <div class="card-header card-header-accent">
                         <p class="card-title">{{landlordSummary?.total_units}}</p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">Units</div>
                     </div>
+                </div> -->
+                <div class="card mt-0">
+                    <div class="card-body">
+                        <h6>Units</h6>
+                        <h3>{{landlordSummary?.total_units}}</h3>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
+                <!-- <div class="card card-stats">
                     <div class="card-header card-header-info">
                         <p class="card-title">{{landlordSummary?.total_leases}}</p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">Leases</div>
+                    </div>
+                </div> -->
+                <div class="card mt-0">
+                    <div class="card-body">
+                        <h6>Leases</h6>
+                        <h3>{{landlordSummary?.total_leases}}</h3>
                     </div>
                 </div>
             </div>

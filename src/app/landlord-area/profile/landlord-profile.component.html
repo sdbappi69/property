@@ -2,13 +2,17 @@
   <div class="container-fluid">
       <div class="row">
           <div class="col-md-8">
-              <div class="card">
-                  <div class="card-header card-header-info" color="accent">
+              <div class="card mt-0">
+                  <!-- <div class="card-header card-header-info" color="accent">
                       <h4 class="card-title">Edit Profile</h4>
                       <p class="card-category">Complete your profile</p>
-                  </div>
+                  </div> -->
                   <div class="card-body" [formGroup]="form"  (ngSubmit)="update()">
-
+                    <div color="accent">
+                        <h4 class="card-title">Edit Profile</h4>
+                        <p class="card-category">Complete your profile</p>
+                    </div>
+                    <hr>
                       <div class="row">
                           <div class="col-6">
                               <mat-form-field class="full-width" color="primary" appearance="outline">
@@ -131,7 +135,7 @@
                           </div>
                       </div>
 
-                      <button class="btn mat-raised-button mat-primary pull-right" (click)="update()" [disabled]="!form.valid || loader">Update Profile</button>
+                      <button class="btn mat-raised-button mat-primary pull-right mat-primary-button" (click)="update()" [disabled]="!form.valid || loader">Update Profile</button>
                   </div>
               </div>
           </div>
