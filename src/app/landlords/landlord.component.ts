@@ -92,6 +92,10 @@ export class LandlordComponent implements OnInit, AfterViewInit {
             .subscribe();
     }
 
+    statusFilter(e) {
+        console.log("e", e);
+    }
+
     /**
      * Empty search box
      */

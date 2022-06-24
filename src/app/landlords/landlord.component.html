@@ -2,41 +2,61 @@
     <div class="container-fluid">
 
         <div class="row">
-
-            <!-- <div class="fab-container" *robiPermission="['create-landlord']">
-                <button mat-fab class="fab-toggler" [routerLink]="['create']">
-                    <mat-icon>add</mat-icon>
-                </button>
-            </div> -->
-
             <div class="col-md-12">
                 <div class="card mt-0">
-                    <!-- <div class="card-header card-header-info">
-                        <h4 class="card-title">{{ 'robi.landlords.title' | translate }}</h4>
-                    </div> -->
                     <div class="card-body">
-                        <h6>{{ 'robi.landlords.title' | translate }}</h6>
-                        <hr/>
-
-                        <div class="row search-form-section">
-                            <div class="col-5" *robiPermission="['create-landlord']">
-                                <button class="mat-primary-button" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
-                                        [routerLink]="['create']">
+                        <div class="row">
+                            <div class="col-6">
+                                <h6>{{ 'robi.landlords.title' | translate }}</h6>
+                            </div>
+                            <div class="col-6 text-right" *robiPermission="['create-landlord']">
+                                <button class="mat-primary-button" [disabled]="(dataSource?.loading$ | async)"
+                                    mat-button matPrefix mat-stroked-button aria-label="add new"
+                                    [routerLink]="['create']">
                                     <mat-icon>add</mat-icon>Add Landlord
                                 </button>
                             </div>
-                            <div class="col-7" [hidden]="!(isAdmin$ | async)">
+                        </div>
+                        <hr />
+
+                        <div class="row search-form-section">
+                            <div class="col-3" [hidden]="!(isAdmin$ | async)">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Enter a date range</mat-label>
+                                    <mat-date-range-input [rangePicker]="picker">
+                                        <input matStartDate placeholder="Start date">
+                                        <input matEndDate placeholder="End date">
+                                    </mat-date-range-input>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-date-range-picker #picker></mat-date-range-picker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3" [hidden]="!(isAdmin$ | async)">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Select a Status</mat-label>
+                                    <!-- [(value)]="selected" -->
+                                    <mat-select (selectionChange)="statusFilter($event.value)">
+                                        <mat-option>None</mat-option>
+                                        <mat-option value="option1">Active</mat-option>
+                                        <mat-option value="option2">Inactive</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6" [hidden]="!(isAdmin$ | async)">
                                 <mat-form-field class="search-form-field">
-                                    <input matInput #search placeholder="{{ 'robi.landlords.filter' | translate }}" autocomplete="off" [disabled]="meta?.total===0">
-                                    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="search.value" (click)="clearSearch()">
-                                        <mat-icon>close</mat-icon></button>
+                                    <input matInput #search placeholder="{{ 'robi.landlords.filter' | translate }}"
+                                        autocomplete="off" [disabled]="meta?.total===0">
+                                    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="search.value"
+                                        (click)="clearSearch()">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
                                 </mat-form-field>
                             </div>
                         </div>
 
                         <div class="table-responsive">
-                            <mat-table #table [dataSource]="dataSource" matSort matSortActive="first_name" matSortDirection="desc"
-                                       matSortDisableClear>
+                            <mat-table #table [dataSource]="dataSource" matSort matSortActive="first_name"
+                                matSortDirection="desc" matSortDisableClear>
 
                                 <ng-container matColumnDef="first_name">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
@@ -66,15 +86,17 @@
                                 <ng-container matColumnDef="actions">
                                     <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
                                     <mat-cell *matCellDef="let row" class="button-row">
-                                        <button mat-raised-button matTooltipClass='red-tooltip' type="button" matTooltip="View Landlord" [matTooltipPosition]="'above'"
-                                                class="btn btn-link btn-sm btn-just-icon" routerLink="{{row.id}}" (click)="onSelected(row)">
+                                        <button mat-raised-button matTooltipClass='red-tooltip' type="button"
+                                            matTooltip="View Landlord" [matTooltipPosition]="'above'"
+                                            class="btn btn-link btn-sm btn-just-icon" routerLink="{{row.id}}"
+                                            (click)="onSelected(row)">
                                             <i class="material-icons">expand_more</i>
                                         </button>
 
-                                        <button *robiPermission="['edit-landlord', 'delete-landlord']" mat-raised-button type="button" 
-                                        matTooltipClass='red-tooltip' 
-                                            matTooltip="Edit Landlord" [matTooltipPosition]="'above'"
-                                                class="btn btn-link btn-sm btn-just-icon" routerLink="{{row.id}}/edit" (click)="onSelected(row)">
+                                        <button *robiPermission="['edit-landlord', 'delete-landlord']" mat-raised-button
+                                            type="button" matTooltipClass='red-tooltip' matTooltip="Edit Landlord"
+                                            [matTooltipPosition]="'above'" class="btn btn-link btn-sm btn-just-icon"
+                                            routerLink="{{row.id}}/edit" (click)="onSelected(row)">
                                             <i class="material-icons">edit</i>
                                         </button>
                                     </mat-cell>
@@ -86,19 +108,13 @@
                             <span *ngIf="meta?.total===0">No Data</span>
 
                             <div class="d-flex justify-content-center spinner-container"
-                                 *ngIf="(dataSource?.loading$ | async) || loader">
-                                <mat-progress-bar
-                                        color="green"
-                                        mode="query"
-                                        value=50
-                                        bufferValue=75>
+                                *ngIf="(dataSource?.loading$ | async) || loader">
+                                <mat-progress-bar color="green" mode="query" value=50 bufferValue=75>
                                 </mat-progress-bar>
                             </div>
 
-                            <mat-paginator #pagination
-                                           [length]="meta?.total"
-                                           [pageIndex]="pageIndex"
-                                           [pageSizeOptions]="pageSizeOptions" showFirstLastButtons>
+                            <mat-paginator #pagination [length]="meta?.total" [pageIndex]="pageIndex"
+                                [pageSizeOptions]="pageSizeOptions" showFirstLastButtons>
                             </mat-paginator>
 
                         </div>

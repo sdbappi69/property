@@ -8,12 +8,18 @@
             </div> -->
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-info">
+                    <!-- <div class="card-header card-header-info">
                         <h4 class="card-title">Property Units</h4>
                         <p class="card-category">{{(property$ | async)?.property_name}}
                             ({{(property$ | async)?.property_code}}) - {{(property$ | async)?.location}}</p>
-                    </div>
+                    </div> -->
                     <div class="card-body">
+                        <div>
+                            <h6>Property Units</h6>
+                            <p class="card-category">{{(property$ | async)?.property_name}}
+                                ({{(property$ | async)?.property_code}}) - {{(property$ | async)?.location}}</p>
+                        </div>
+                        <hr>
                         <div class="row search-form-section">
                             <div class="col-5">
                                 <button [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
