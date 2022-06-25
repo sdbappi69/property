@@ -178,6 +178,16 @@ export class LeaseComponent implements OnInit, AfterViewInit {
         }
     }
 
+    
+    statusFilter(e) {
+        console.log("e", e);
+    }
+
+    dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
+        console.log(dateRangeStart.value);
+        console.log(dateRangeEnd.value);
+    }
+
     /**
      * Add dialog launch
      */

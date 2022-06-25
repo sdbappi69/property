@@ -7,6 +7,7 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { selectorIsAgent, selectorIsLandlord, selectorIsTenant, selectorUserID } from '../../../authentication/authentication.selectors';
 import { USER_SCOPES } from '../../../shared/enums/user-scopes.enum';
+import { environment as env } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UserSettingService extends BaseService<UserSettingModel> {
@@ -54,7 +55,7 @@ export class UserSettingService extends BaseService<UserSettingModel> {
      */
     public forgotPassword(email: any): Observable<any> {
         const itemUrl = 'forgot_password';
-        return this.localHttpClient.post<any>(`${super.getApiUrl()}/${itemUrl}`, email);
+        return this.localHttpClient.post<any>(`${env.baseURL}/${itemUrl}`, email);
     }
 
     /**
@@ -63,6 +64,6 @@ export class UserSettingService extends BaseService<UserSettingModel> {
      */
     public resetPassword(item: any): Observable<any> {
         const itemUrl = 'reset_password';
-        return this.localHttpClient.post<any>(`${super.getApiUrl()}/${itemUrl}`, item);
+        return this.localHttpClient.post<any>(`${env.baseURL}/${itemUrl}`, item);
     }
 }

@@ -1,32 +1,46 @@
 <div class="main-content">
     <div class="container-fluid">
-
         <div class="row">
-
-            <!-- <div class="fab-container" *robiPermission="['create-reading']">
-                <button mat-fab class="fab-toggler" [routerLink]="['create']">
-                    <mat-icon>add</mat-icon>
-                </button>
-            </div> -->
-
             <div class="col-md-12">
                 <div class="card mt-0">
-                    <!-- <div class="card-header card-header-info">
-                        <h4 class="card-title">{{ 'robi.utilities.title' | translate }}</h4>
-                    </div> -->
                     <div class="card-body">
-                        <h6>{{ 'robi.utilities.title' | translate }}</h6>
-                        <hr>
-                        <div class="row search-form-section">
-                            <div class="col-5">
-                                <ng-container *robiPermission="['create-reading']">
-                                    <button class="mat-primary-button" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
+                        <div class="row">
+                            <div class="col-6">
+                                <h6>{{ 'robi.utilities.title' | translate }}</h6>
+                            </div>
+                            <div class="col-6 text-right" *robiPermission="['create-reading']">
+                                <button class="mat-primary-button" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
                                             [routerLink]="['create']">
                                         <mat-icon>add</mat-icon>Add Utility Bill
                                     </button>
-                                </ng-container>
                             </div>
-                            <div class="col-7">
+                        </div>
+                        <hr>
+                        <div class="row search-form-section">
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Enter a date range</mat-label>
+                                    <mat-date-range-input [rangePicker]="picker">
+                                        <input matStartDate placeholder="Start date" #dateRangeStart>
+                                        <input matEndDate placeholder="End date" #dateRangeEnd
+                                        (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                                    </mat-date-range-input>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-date-range-picker #picker></mat-date-range-picker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Select a Status</mat-label>
+                                    <!-- [(value)]="selected" -->
+                                    <mat-select (selectionChange)="statusFilter($event.value)">
+                                        <mat-option>None</mat-option>
+                                        <mat-option value="option1">Active</mat-option>
+                                        <mat-option value="option2">Inactive</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
                                 <mat-form-field class="search-form-field">
                                     <input matInput #search placeholder="{{ 'robi.filter' | translate }}" autocomplete="off" [disabled]="meta?.total===0">
                                     <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="search.value" (click)="clearSearch()">

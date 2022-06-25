@@ -125,6 +125,15 @@ export class PropertyComponent implements OnInit, AfterViewInit {
             .subscribe();
     }
 
+    statusFilter(e) {
+        console.log("e", e);
+    }
+
+    dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
+        console.log(dateRangeStart.value);
+        console.log(dateRangeEnd.value);
+    }
+
     /**
      * Empty search box
      */
