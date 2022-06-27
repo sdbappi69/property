@@ -100,7 +100,7 @@ export class BaseService<T extends BaseModel> {
                 .set('whereValue', whereValue)
                 .set('endDate', endDate)
                 .set('startDate', startDate)
-                .set('confirmed', confirmed)
+                .set('confirmed_status', confirmed)
         });
     }
 
@@ -118,7 +118,7 @@ export class BaseService<T extends BaseModel> {
                 .set('whereValue', whereValue)
                 .set('endDate', endDate)
                 .set('startDate', startDate)
-                .set('confirmed', confirmed)
+                .set('confirmed_status', confirmed)
         });
     }
 
