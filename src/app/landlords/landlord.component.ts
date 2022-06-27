@@ -35,6 +35,11 @@ export class LandlordComponent implements OnInit, AfterViewInit {
     pageIndex = 0;
     pageSizeOptions: number[] = [5, 10, 25, 50, 100];
     meta: any;
+    filter = {
+        startdate: '',
+        endDate: '',
+        confirmed: ''
+    };
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     isAdmin$: Observable<boolean>;
     constructor(private landlordService: LandlordService,
@@ -64,7 +69,10 @@ export class LandlordComponent implements OnInit, AfterViewInit {
             (this.paginator.pageSize),
             this.sort.active,
             this.sort.direction,
-            '2022-02-22'
+            '', '',
+            this.filter.startdate,
+            this.filter.endDate,
+            this.filter.confirmed
         );
     }
 
@@ -94,14 +102,15 @@ export class LandlordComponent implements OnInit, AfterViewInit {
             .subscribe();
     }
 
-    statusFilter(e) {
-        console.log("e", e);
+    statusFilter(val) {
+        this.filter.confirmed = val;
+        this.loadData();
     }
 
     dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
-        console.log(dateRangeStart.value);
-        console.log(dateRangeEnd.value);
-        console.log(moment(dateRangeEnd.value, 'DD/MM/YYYY').format('YYYY-MM-DD'));
+        this.filter.startdate = moment(dateRangeStart.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.filter.endDate = moment(dateRangeEnd.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.loadData();
     }
     /**
      * Empty search box

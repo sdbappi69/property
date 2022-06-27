@@ -116,7 +116,9 @@ export class BaseService<T extends BaseModel> {
                 .set('sortDirection', sortDirection)
                 .set('whereField', whereField)
                 .set('whereValue', whereValue)
+                .set('endDate', endDate)
                 .set('startDate', startDate)
+                .set('confirmed', confirmed)
         });
     }
 

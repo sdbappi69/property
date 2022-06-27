@@ -11,6 +11,7 @@ import { ReadingDataSource } from './data/reading-data.source';
 import { NotificationService } from '../shared/notification.service';
 import { ReadingService } from './data/reading.service';
 import { EditReadingComponent } from './edit/edit-reading.component';
+import * as moment from 'moment';
 
 @Component({
     selector: 'robi-utility-bills',
@@ -45,6 +46,11 @@ export class ReadingComponent implements OnInit, AfterViewInit {
     pageIndex = 0;
     pageSizeOptions: number[] = [5, 10, 25, 50, 100];
     meta: any;
+    filter = {
+        startdate: '',
+        endDate: '',
+        confirmed: ''
+    };
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
     constructor(private readingService: ReadingService,
@@ -110,7 +116,11 @@ export class ReadingComponent implements OnInit, AfterViewInit {
             (this.paginator.pageIndex + 1),
             (this.paginator.pageSize),
             this.sort.active,
-            this.sort.direction
+            this.sort.direction,
+            '', '',
+            this.filter.startdate,
+            this.filter.endDate,
+            this.filter.confirmed
         );
     }
 
@@ -152,13 +162,15 @@ export class ReadingComponent implements OnInit, AfterViewInit {
         });
     }
 
-    statusFilter(e) {
-        console.log("e", e);
+    statusFilter(val) {
+        this.filter.confirmed = val;
+        this.loadData();
     }
 
     dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
-        console.log(dateRangeStart.value);
-        console.log(dateRangeEnd.value);
+        this.filter.startdate = moment(dateRangeStart.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.filter.endDate = moment(dateRangeEnd.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.loadData();
     }
 
     /**

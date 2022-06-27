@@ -15,6 +15,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
 import { USER_SCOPES } from '../shared/enums/user-scopes.enum';
 import { UserSettingService } from '../settings/user/data/user-setting.service';
 import { TenantService } from '../tenants/data/tenant.service';
+import * as moment from 'moment';
 
 @Component({
     selector: 'robi-properties',
@@ -54,6 +55,11 @@ export class PropertyComponent implements OnInit, AfterViewInit {
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     isAdmin$: Observable<boolean>;
     activeUser: any;
+    filter = {
+        startdate: '',
+        endDate: '',
+        confirmed: ''
+    };
     constructor(private userService: UserSettingService,
                 private landlordService: LandlordService,
                 private tenantService: TenantService,
@@ -125,13 +131,17 @@ export class PropertyComponent implements OnInit, AfterViewInit {
             .subscribe();
     }
 
-    statusFilter(e) {
-        console.log("e", e);
+    statusFilter(val) {
+        this.filter.confirmed = val;
+        this.loadData();
     }
 
     dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
         console.log(dateRangeStart.value);
         console.log(dateRangeEnd.value);
+        this.filter.startdate = moment(dateRangeStart.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.filter.endDate = moment(dateRangeEnd.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.loadData();
     }
 
     /**
@@ -175,7 +185,11 @@ export class PropertyComponent implements OnInit, AfterViewInit {
                     (this.paginator.pageIndex + 1),
                     (this.paginator.pageSize),
                     this.sort.active,
-                    this.sort.direction
+                    this.sort.direction,
+                    '', '',
+                    this.filter.startdate,
+                    this.filter.endDate,
+                    this.filter.confirmed
                 );
                 break;
             }
@@ -186,7 +200,11 @@ export class PropertyComponent implements OnInit, AfterViewInit {
                     (this.paginator.pageIndex + 1),
                     (this.paginator.pageSize),
                     this.sort.active,
-                    this.sort.direction
+                    this.sort.direction,
+                    '', '',
+                    this.filter.startdate,
+                    this.filter.endDate,
+                    this.filter.confirmed
                 );
                 break;
             }
@@ -197,7 +215,11 @@ export class PropertyComponent implements OnInit, AfterViewInit {
                     (this.paginator.pageIndex + 1),
                     (this.paginator.pageSize),
                     this.sort.active,
-                    this.sort.direction
+                    this.sort.direction,
+                    '', '',
+                    this.filter.startdate,
+                    this.filter.endDate,
+                    this.filter.confirmed
                 );
                 break;
             }

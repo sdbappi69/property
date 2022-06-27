@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { AccountingModel } from '../accounting/models/accounting-model';
 import { PdfStatementComponent } from '../accounting/pdf-statement/pdf-statement.component';
+import * as moment from 'moment';
 
 @Component({
     selector: 'robi-properties',
@@ -60,6 +61,11 @@ export class LeaseComponent implements OnInit, AfterViewInit {
     isAdmin$: Observable<boolean>;
     isTenant: any;
     isLandlord: any;
+    filter = {
+        startdate: '',
+        endDate: '',
+        confirmed: ''
+    };
     constructor(private landlordService: LandlordService,
                 private tenantService: TenantService,
                 private userService: UserSettingService,
@@ -149,7 +155,11 @@ export class LeaseComponent implements OnInit, AfterViewInit {
                     (this.paginator.pageIndex + 1),
                     (this.paginator.pageSize),
                     this.sort.active,
-                    this.sort.direction
+                    this.sort.direction,
+                    '', '',
+                    this.filter.startdate,
+                    this.filter.endDate,
+                    this.filter.confirmed
                 );
                 break;
             }
@@ -160,7 +170,11 @@ export class LeaseComponent implements OnInit, AfterViewInit {
                     (this.paginator.pageIndex + 1),
                     (this.paginator.pageSize),
                     this.sort.active,
-                    this.sort.direction
+                    this.sort.direction,
+                    '', '',
+                    this.filter.startdate,
+                    this.filter.endDate,
+                    this.filter.confirmed
                 );
                 break;
             }
@@ -171,7 +185,11 @@ export class LeaseComponent implements OnInit, AfterViewInit {
                     (this.paginator.pageIndex + 1),
                     (this.paginator.pageSize),
                     this.sort.active,
-                    this.sort.direction
+                    this.sort.direction,
+                    '', '',
+                    this.filter.startdate,
+                    this.filter.endDate,
+                    this.filter.confirmed
                 );
                 break;
             }
@@ -179,13 +197,15 @@ export class LeaseComponent implements OnInit, AfterViewInit {
     }
 
     
-    statusFilter(e) {
-        console.log("e", e);
+    statusFilter(val) {
+        this.filter.confirmed = val;
+        this.loadData();
     }
 
     dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
-        console.log(dateRangeStart.value);
-        console.log(dateRangeEnd.value);
+        this.filter.startdate = moment(dateRangeStart.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.filter.endDate = moment(dateRangeEnd.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.loadData();
     }
 
     /**

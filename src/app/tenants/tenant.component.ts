@@ -12,7 +12,7 @@ import { NotificationService } from '../shared/notification.service';
 import { TenantService } from './data/tenant.service';
 import { PropertyModel } from '../properties/models/property-model';
 import { AuthenticationService } from '../authentication/authentication.service';
-
+import * as moment from 'moment';
 @Component({
     selector: 'robi-properties',
     templateUrl: './tenant.component.html',
@@ -47,6 +47,11 @@ export class TenantComponent implements OnInit, AfterViewInit {
     meta: any;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     isAdmin$: Observable<boolean>;
+    filter = {
+        startdate: '',
+        endDate: '',
+        confirmed: ''
+    };
     constructor(private tenantService: TenantService,
                 private notification: NotificationService,
                 private authenticationService: AuthenticationService,
@@ -104,17 +109,23 @@ export class TenantComponent implements OnInit, AfterViewInit {
             (this.paginator.pageIndex + 1),
             (this.paginator.pageSize),
             this.sort.active,
-            this.sort.direction
+            this.sort.direction,
+            '', '',
+            this.filter.startdate,
+            this.filter.endDate,
+            this.filter.confirmed
         );
     }
 
-    statusFilter(e) {
-        console.log("e", e);
+    statusFilter(val) {
+        this.filter.confirmed = val;
+        this.loadData();
     }
 
     dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
-        console.log(dateRangeStart.value);
-        console.log(dateRangeEnd.value);
+        this.filter.startdate = moment(dateRangeStart.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.filter.endDate = moment(dateRangeEnd.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.loadData();
     }
 
     /**

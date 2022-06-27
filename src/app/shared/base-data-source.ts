@@ -51,11 +51,12 @@ export class BaseDataSource implements DataSource<any> {
      * @param whereValue
      */
     loadNested(url: string, filter: string, page: number, limit: number, sortField: string = '',
-         sortDirection: string = '', whereField: string = '', whereValue: string = '') {
+         sortDirection: string = '', whereField: string = '', whereValue: string = '',
+         startDate: string = '', endDate: string = '', confirmed: string = '') {
 
         this.loadingSubject.next(true);
 
-        this.service.getNested(url, filter, page, limit, sortField, sortDirection, whereField, whereValue)
+        this.service.getNested(url, filter, page, limit, sortField, sortDirection, whereField, whereValue, startDate, endDate, confirmed )
             .pipe(
             catchError(() => of([])),
             finalize(() => this.loadingSubject.next(false))
