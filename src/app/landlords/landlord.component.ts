@@ -11,6 +11,7 @@ import { LandlordDataSource } from './data/landlord-data.source';
 import { NotificationService } from '../shared/notification.service';
 import { LandlordService } from './data/landlord.service';
 import { AuthenticationService } from '../authentication/authentication.service';
+import * as moment from 'moment';
 @Component({
     selector: 'robi-landlords',
     templateUrl: './landlord.component.html',
@@ -62,7 +63,8 @@ export class LandlordComponent implements OnInit, AfterViewInit {
             (this.paginator.pageIndex + 1),
             (this.paginator.pageSize),
             this.sort.active,
-            this.sort.direction
+            this.sort.direction,
+            '2022-02-22'
         );
     }
 
@@ -99,6 +101,7 @@ export class LandlordComponent implements OnInit, AfterViewInit {
     dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
         console.log(dateRangeStart.value);
         console.log(dateRangeEnd.value);
+        console.log(moment(dateRangeEnd.value, 'DD/MM/YYYY').format('YYYY-MM-DD'));
     }
     /**
      * Empty search box

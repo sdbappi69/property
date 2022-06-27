@@ -87,7 +87,8 @@ export class BaseService<T extends BaseModel> {
      * @param sortDirection
      */
     getAll(filter: string, page: number, limit: number, sortField: string = '', sortDirection: string = '',
-           whereField: string = '', whereValue: string = ''): Observable<{}> {
+           whereField: string = '', whereValue: string = '', startDate: string = '',
+            endDate: string = '', confirmed: string = ''): Observable<{}> {
         return this.httpClient.get(this.getResourceUrl(), {
             params: new HttpParams()
                 .set('filter', filter)
@@ -97,11 +98,15 @@ export class BaseService<T extends BaseModel> {
                 .set('sortDirection', sortDirection)
                 .set('whereField', whereField)
                 .set('whereValue', whereValue)
+                .set('endDate', endDate)
+                .set('startDate', startDate)
+                .set('confirmed', confirmed)
         });
     }
 
     getNested(url: string, filter: string, page: number, limit: number, sortField: string = '', sortDirection: string = '',
-           whereField: string = '', whereValue: string = ''): Observable<{}> {
+           whereField: string = '', whereValue: string = ''
+           , startDate: string = '', endDate: string = '', confirmed: string = ''): Observable<{}> {
         return this.httpClient.get(url, {
             params: new HttpParams()
                 .set('filter', filter)
@@ -111,6 +116,7 @@ export class BaseService<T extends BaseModel> {
                 .set('sortDirection', sortDirection)
                 .set('whereField', whereField)
                 .set('whereValue', whereValue)
+                .set('startDate', startDate)
         });
     }
 
