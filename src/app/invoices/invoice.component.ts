@@ -18,6 +18,7 @@ import { UserSettingService } from '../settings/user/data/user-setting.service';
 import { TenantService } from '../tenants/data/tenant.service';
 import { USER_SCOPES } from '../shared/enums/user-scopes.enum';
 import { AuthenticationService } from '../authentication/authentication.service';
+import * as moment from 'moment';
 
 @Component({
     selector: 'robi-utility-bills',
@@ -62,6 +63,11 @@ export class InvoiceComponent implements OnInit, AfterViewInit {
     landlordID: string;
     activeUser: any;
     isAdmin$: Observable<boolean>;
+    filter = {
+        startdate: '',
+        endDate: '',
+        confirmed: ''
+    };
     constructor(private store: Store<AppState>,
                 private userService: UserSettingService,
                 private landlordService: LandlordService,
@@ -178,6 +184,17 @@ export class InvoiceComponent implements OnInit, AfterViewInit {
                 break;
             }
         }
+    }
+
+    statusFilter(val) {
+        this.filter.confirmed = val;
+        this.loadData();
+    }
+
+    dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
+        this.filter.startdate = moment(dateRangeStart.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.filter.endDate = moment(dateRangeEnd.value, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        this.loadData();
     }
 
     /**

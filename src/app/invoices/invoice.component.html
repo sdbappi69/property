@@ -9,11 +9,53 @@
                         <h6>{{ 'robi.invoices.title' | translate }}</h6>
                         <hr>
                         <div class="row search-form-section">
-                            <div class="col-12" [hidden]="!(isAdmin$ | async)">
+                            <div class="col-3" [hidden]="!(isAdmin$ | async)">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Search by Date</mat-label>
+                                    <mat-date-range-input [rangePicker]="picker">
+                                        <input matStartDate placeholder="Start date" #dateRangeStart>
+                                        <input matEndDate placeholder="End date" #dateRangeEnd
+                                        (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                                    </mat-date-range-input>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-date-range-picker #picker></mat-date-range-picker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3" [hidden]="!(isAdmin$ | async)">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Select a Status</mat-label>
+                                    <!-- [(value)]="selected" -->
+                                    <mat-select (selectionChange)="statusFilter($event.value)">
+                                        <mat-option>None</mat-option>
+                                        <mat-option value="1">Due</mat-option>
+                                        <mat-option value="0">Paid</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3" [hidden]="!(isAdmin$ | async)">
                                 <mat-form-field class="search-form-field">
-                                    <input matInput #search placeholder="{{ 'robi.filter' | translate }}" autocomplete="off" [disabled]="meta?.total===0">
+                                    <input matInput #search placeholder="Search by Invoice Number" autocomplete="off" [disabled]="meta?.total===0">
                                     <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="search.value" (click)="clearSearch()">
                                         <mat-icon>close</mat-icon></button>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3" [hidden]="!(isAdmin$ | async)">
+                                <mat-form-field class="search-form-field">
+                                    <input matInput #search placeholder="Search by Lease Number" autocomplete="off" [disabled]="meta?.total===0">
+                                    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="search.value" (click)="clearSearch()">
+                                        <mat-icon>close</mat-icon></button>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3" [hidden]="!(isAdmin$ | async)">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Search by Invoice Date</mat-label>
+                                    <mat-date-range-input [rangePicker]="picker">
+                                        <input matStartDate placeholder="Start date" #dateRangeStart>
+                                        <input matEndDate placeholder="End date" #dateRangeEnd
+                                        (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                                    </mat-date-range-input>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-date-range-picker #picker></mat-date-range-picker>
                                 </mat-form-field>
                             </div>
                         </div>
