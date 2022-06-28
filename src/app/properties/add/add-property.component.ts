@@ -26,7 +26,9 @@ import { LATE_FEE_TYPES } from '../../shared/enums/late-fee-types.enum';
 import { PropertyExtraDataService } from '../data/property-extra-data.service';
 import { ConfirmationDialogComponent } from '../../shared/delete/confirmation-dialog-component';
 import { AuthenticationService } from '../../authentication/authentication.service';
-
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../../reducers';
+import { selectorIsLandlord } from '../../authentication/authentication.selectors';
 @Component({
     selector: 'robi-add-property',
     styles: [],
@@ -102,6 +104,7 @@ export class AddPropertyComponent implements OnInit, OnDestroy  {
 
     deleteDialogRef: MatDialogRef<ConfirmationDialogComponent>;
     isAdmin$: Observable<boolean>;
+    isLandlord$: any;
     constructor(private fb: FormBuilder,
                 private propertyExtraDataService: PropertyExtraDataService,
                 private dialog: MatDialog,
@@ -118,8 +121,10 @@ export class AddPropertyComponent implements OnInit, OnDestroy  {
                 private amenityService: AmenityService,
                 private utilityService: UtilityService,
                 private authenticationService: AuthenticationService,
+                private store: Store<AppState>,
                 private notification: NotificationService) {
         this.isAdmin$ = this.authenticationService.isAdmin();
+        this.isLandlord$ = this.store.pipe(select(selectorIsLandlord));
         this.lateFeeTypes = LATE_FEE_TYPES;
         this.extraChargeTypes = EXTRA_CHARGE_TYPES;
         this.extraChargeFrequencies = EXTRA_CHARGE__FREQUENCIES;
@@ -129,7 +134,7 @@ export class AddPropertyComponent implements OnInit, OnDestroy  {
 
             this.propertyDetailsFormGroup = this._formBuilder.group({
                 total_units: [''],
-                landlord_id: ['', [Validators.required,
+                landlord_id: ['', [
                     Validators.minLength(2)]],
                 property_name: ['', [Validators.required,
                     Validators.minLength(2)]],
