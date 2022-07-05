@@ -12,7 +12,8 @@
                                 <h6 class="card-title">{{ 'robi.tenants.title' | translate }}</h6>
                             </div>
                             <div class="col-6 text-right" *robiPermission="['create-tenant']">
-                                <button class="mat-primary-button" *ngIf="isAdmin$ | async" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
+                                <!-- *ngIf="isAdmin$ | async"  -->
+                                <button class="mat-primary-button" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
                                         [routerLink]="['create']">
                                     <mat-icon>add</mat-icon>Add Tenant
                                 </button>
@@ -20,7 +21,7 @@
                         </div>
                         <hr>
                         <div class="row search-form-section">
-                            <div class="col-3" [hidden]="!(isAdmin$ | async)">
+                            <div class="col-3" >
                                 <mat-form-field appearance="fill">
                                     <mat-label>Enter a date range</mat-label>
                                     <mat-date-range-input [rangePicker]="picker">
@@ -32,7 +33,7 @@
                                     <mat-date-range-picker #picker></mat-date-range-picker>
                                 </mat-form-field>
                             </div>
-                            <div class="col-3" [hidden]="!(isAdmin$ | async)">
+                            <div class="col-3">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Select a Status</mat-label>
                                     <!-- [(value)]="selected" -->
@@ -43,7 +44,7 @@
                                     </mat-select>
                                 </mat-form-field>
                             </div>
-                            <div class="col-6" [hidden]="!(isAdmin$ | async)">
+                            <div class="col-6">
                                 <mat-form-field class="search-form-field">
                                     <input matInput #search placeholder="{{ 'robi.filter' | translate }}" autocomplete="off" [disabled]="meta?.total===0">
                                     <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="search.value" (click)="clearSearch()">

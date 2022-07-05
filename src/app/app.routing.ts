@@ -49,7 +49,7 @@ const routes: Routes = [
       {
         path: 'tenants',
         loadChildren: () => import('./tenants/tenant.module').then(m => m.TenantModule),
-        canActivate: [AuthGuardAdmin],
+        canActivate: [AuthGuard],
         canLoad: [PermGuard],
         data: {
           permissions: ['view-tenant', 'create-tenant', 'edit-tenant', 'delete-tenant']
