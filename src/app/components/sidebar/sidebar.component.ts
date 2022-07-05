@@ -60,7 +60,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
 export const LANDLORD_ROUTES: RouteInfo[] = [
     { path: '/landlord/dashboard', title: 'robi.sidebar.dashboard',  icon: 'dashboard', class: '', permission: ['am-landlord'] },
     { path: '/properties', title: 'robi.sidebar.properties',  icon: 'business', class: '', permission: ['am-landlord'] },
-    // { path: '/tenants', title: 'robi.sidebar.tenants',  icon: 'group_add', class: '', permission: ['am-landlord'] },
+    { path: '/tenants', title: 'robi.sidebar.tenants',  icon: 'group_add', class: '', permission: ['am-landlord'] },
     { path: '/leases', title: 'robi.sidebar.leases',  icon: 'gavel', class: '', permission: ['am-landlord'] },
     { path: '/payments', title: 'robi.sidebar.payments',  icon: 'payment', class: '', permission: ['am-landlord'] },
     { path: '/invoices', title: 'robi.sidebar.invoices',  icon: 'receipt', class: '', permission: ['am-landlord'] },

@@ -45,7 +45,7 @@ export class AddLandlordComponent implements OnInit  {
             middle_name: [''],
             last_name: ['', [Validators.required,
                 Validators.minLength(2)]],
-            country: [''],
+            country: ['Bangladesh'],
             id_number: [''],
             passport_number: [''],
             phone: [''],
@@ -98,7 +98,7 @@ export class AddLandlordComponent implements OnInit  {
             postal_address: landlord?.postal_address,
             residential_address: landlord?.residential_address,
             physical_address: landlord?.physical_address,
-            county: landlord?.county,
+            county: landlord?.county || 'Bangladesh',
             city: landlord?.city,
             state: landlord?.state,
             status_id: landlord?.status_id

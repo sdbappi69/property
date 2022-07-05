@@ -99,7 +99,11 @@
                                             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                                 <mat-form-field class="full-width" color="primary" appearance="outline">
                                                     <mat-label>Marital Status</mat-label>
-                                                    <input matInput formControlName="marital_status" placeholder="Marital Status">
+                                                    <!-- <input matInput formControlName="marital_status" placeholder="Marital Status"> -->
+                                                    <mat-select formControlName="marital_status">
+                                                        <mat-option value="Married">Married</mat-option>
+                                                        <mat-option value="Unmarred">Unmarred</mat-option>
+                                                    </mat-select>
                                                     <mat-error align="start" *ngIf="formErrors?.marital_status" class="form__error">{{ formErrors.marital_status }}</mat-error>
                                                 </mat-form-field>
                                             </div>
@@ -189,8 +193,8 @@
                             </mat-step>
                             <mat-step [stepControl]="nextOfKinFormGroup">
                                 <form [formGroup]="nextOfKinFormGroup">
-                                    <ng-template matStepLabel>Kin & Relation</ng-template>
-                                                  <div class="row">
+                                    <ng-template matStepLabel>Emergency Contract</ng-template>
+                                                  <!-- <div class="row">
                                                       <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                                           <mat-form-field class="full-width" color="primary" appearance="outline">
                                                               <mat-label>Next of Kin Name</mat-label>
@@ -212,7 +216,7 @@
                                                               <mat-error align="start" *ngIf="formErrors?.next_of_kin_relation" class="form__error">{{ formErrors.next_of_kin_relation }}</mat-error>
                                                           </mat-form-field>
                                                       </div>
-                                                </div>
+                                                </div> -->
 
                                                 <div class="row">
                                                     <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
@@ -245,7 +249,7 @@
                                                             <mat-error align="start" *ngIf="formErrors?.emergency_contact_relationship" class="form__error">{{ formErrors.emergency_contact_relationship }}</mat-error>
                                                         </mat-form-field>
                                                     </div>
-                                                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <!-- <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                                         <mat-form-field class="full-width" color="primary" appearance="outline">
                                                             <mat-label>Emergency Postal Address</mat-label>
                                                             <input matInput formControlName="emergency_contact_phone" placeholder="Emergency Postal Address">
@@ -258,7 +262,7 @@
                                                             <input matInput formControlName="emergency_contact_physical_address" placeholder="Emergency Physical Address">
                                                             <mat-error align="start" *ngIf="formErrors?.emergency_contact_physical_address" class="form__error">{{ formErrors.emergency_contact_physical_address }}</mat-error>
                                                         </mat-form-field>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
 
                                     <div>

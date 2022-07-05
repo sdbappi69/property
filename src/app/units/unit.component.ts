@@ -29,7 +29,7 @@ export class UnitComponent implements OnInit, AfterViewInit {
     displayedColumns = [
         'unit_name',
         'unit_mode',
-        'unit_type_id',
+        // 'unit_type_id',
         'total_rooms',
         'bed_rooms',
         'actions'
