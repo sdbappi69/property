@@ -13,6 +13,9 @@ import { TenantService } from './data/tenant.service';
 import { PropertyModel } from '../properties/models/property-model';
 import { AuthenticationService } from '../authentication/authentication.service';
 import * as moment from 'moment';
+import { UserSettingService } from '../settings/user/data/user-setting.service';
+import { USER_SCOPES } from '../shared/enums/user-scopes.enum';
+import { LandlordService } from '../landlords/data/landlord.service';
 @Component({
     selector: 'robi-properties',
     templateUrl: './tenant.component.html',
@@ -29,10 +32,13 @@ export class TenantComponent implements OnInit, AfterViewInit {
     ];
 
     loader = false;
+    activeUser: any;
 
     dialogRef: MatDialogRef<ConfirmationDialogComponent>;
 
     dataSource: TenantDataSource;
+    isLandlord = false;
+    landlordID: string;
 
     // Search field
     @ViewChild('search') search: ElementRef;
@@ -53,10 +59,15 @@ export class TenantComponent implements OnInit, AfterViewInit {
         confirmed: ''
     };
     constructor(private tenantService: TenantService,
+                private landlordService: LandlordService,
                 private notification: NotificationService,
                 private authenticationService: AuthenticationService,
+                private userService: UserSettingService,
                 private dialog: MatDialog) {
         this.isAdmin$ = this.authenticationService.isAdmin();
+        this.activeUser = this.userService.getActiveUser();
+        this.isLandlord = this.landlordService.isLandlord();
+        this.landlordID = this.landlordService.getLoggedInLandlordID();
     }
 
     /**
@@ -69,7 +80,26 @@ export class TenantComponent implements OnInit, AfterViewInit {
         // Load pagination data
         this.dataSource.meta$.subscribe((res) => this.meta = res);
         // We load initial data here to avoid affecting life cycle hooks if we load all data on after view init
-        this.dataSource.load('', 0, 0, 'first_name', 'desc');
+
+        switch (this.activeUser?.userType) {
+            case USER_SCOPES.ADMIN: {
+                this.dataSource.load('', 0, 0, 'first_name', 'desc');
+                break;
+            }
+            case USER_SCOPES.LANDLORD: {
+                this.dataSource.loadNested(
+                    this.landlordService.nestedTenantsUrl(this.activeUser?.userID),
+                    '', 0, 0);
+                break;
+            }
+            // case USER_SCOPES.TENANT: {
+            //     this.dataSource.loadNested(
+            //         this.tenantService.nestedPropertiesUrl(this.activeUser?.userID),
+            //         '', 0, 0);
+            //     break;
+            // }
+        }
+        
     }
 
     /**
@@ -104,17 +134,54 @@ export class TenantComponent implements OnInit, AfterViewInit {
      * Fetch data from data lead
      */
     loadData() {
-        this.dataSource.load(
-            this.search.nativeElement.value,
-            (this.paginator.pageIndex + 1),
-            (this.paginator.pageSize),
-            this.sort.active,
-            this.sort.direction,
-            '', '',
-            this.filter.startdate,
-            this.filter.endDate,
-            this.filter.confirmed
-        );
+        switch (this.activeUser?.userType) {
+            case USER_SCOPES.ADMIN: {
+                this.dataSource.load(
+                    this.search.nativeElement.value,
+                    (this.paginator.pageIndex + 1),
+                    (this.paginator.pageSize),
+                    this.sort.active,
+                    this.sort.direction,
+                    '', '',
+                    this.filter.startdate,
+                    this.filter.endDate,
+                    this.filter.confirmed
+                );        
+                break;
+            }
+            case USER_SCOPES.LANDLORD: {
+                this.dataSource.loadNested(
+                    this.landlordService.nestedTenantsUrl(this.activeUser?.userID),
+                    this.search.nativeElement.value,
+                    (this.paginator.pageIndex + 1),
+                    (this.paginator.pageSize),
+                    this.sort.active,
+                    this.sort.direction,
+                    '', '',
+                    this.filter.startdate,
+                    this.filter.endDate,
+                    this.filter.confirmed
+                );
+                break;
+            }
+            // case USER_SCOPES.TENANT: {
+            //     console.log("216");
+                
+            //     this.dataSource.loadNested(
+            //         this.tenantService.nestedPropertiesUrl(this.activeUser?.userID),
+            //         this.search.nativeElement.value,
+            //         (this.paginator.pageIndex + 1),
+            //         (this.paginator.pageSize),
+            //         this.sort.active,
+            //         this.sort.direction,
+            //         '', '',
+            //         this.filter.startdate,
+            //         this.filter.endDate,
+            //         this.filter.confirmed
+            //     );
+            //     break;
+            // }
+        }
     }
 
     statusFilter(val) {
