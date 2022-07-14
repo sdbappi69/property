@@ -54,7 +54,7 @@ export class LeaseComponent implements OnInit, AfterViewInit {
     // Pagination
     length: number;
     pageIndex = 0;
-    pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+    pageSizeOptions: number[] = [10, 25, 50, 100];
     meta: any;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     activeUser: any;
@@ -90,19 +90,19 @@ export class LeaseComponent implements OnInit, AfterViewInit {
         // load leases
         switch (this.activeUser?.userType) {
             case USER_SCOPES.ADMIN: {
-                this.dataSource.load('', 0, 0, 'lease_number', 'desc');
+                this.dataSource.load('', 0, 10, 'lease_number', 'desc');
                 break;
             }
             case USER_SCOPES.LANDLORD: {
                 this.dataSource.loadNested(
                     this.landlordService.nestedLeasesUrl(this.activeUser?.userID),
-                    '', 0, 0);
+                    '', 0, 10);
                 break;
             }
             case USER_SCOPES.TENANT: {
                 this.dataSource.loadNested(
                     this.tenantService.nestedLeasesUrl(this.activeUser?.userID),
-                    '', 0, 0);
+                    '', 0, 10);
                 break;
             }
         }

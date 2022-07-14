@@ -50,7 +50,7 @@ export class PropertyComponent implements OnInit, AfterViewInit {
     // Pagination
     length: number;
     pageIndex = 0;
-    pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+    pageSizeOptions: number[] = [10, 25, 50, 100];
     meta: any;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     isAdmin$: Observable<boolean>;
@@ -85,13 +85,13 @@ export class PropertyComponent implements OnInit, AfterViewInit {
         // load properties
         switch (this.activeUser?.userType) {
             case USER_SCOPES.ADMIN: {
-                this.dataSource.load('', 0, 0, 'updated_at', 'desc');
+                this.dataSource.load('', 0, 10, 'updated_at', 'desc');
                 break;
             }
             case USER_SCOPES.LANDLORD: {
                 this.dataSource.loadNested(
                     this.landlordService.nestedPropertiesUrl(this.activeUser?.userID),
-                    '', 0, 0);
+                    '', 0, 10);
                 break;
             }
             case USER_SCOPES.TENANT: {

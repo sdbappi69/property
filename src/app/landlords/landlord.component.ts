@@ -33,7 +33,7 @@ export class LandlordComponent implements OnInit, AfterViewInit {
     @ViewChild(MatPaginator, {static: true }) paginator: MatPaginator;
     length: number;
     pageIndex = 0;
-    pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+    pageSizeOptions: number[] = [ 10, 25, 50, 100];
     meta: any;
     filter = {
         startdate: '',
@@ -56,7 +56,7 @@ export class LandlordComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         this.dataSource = new LandlordDataSource(this.landlordService);
         this.dataSource.meta$.subscribe((res) => this.meta = res);
-        this.dataSource.load('', 0, 0, 'updated_at', 'desc');
+        this.dataSource.load('', 0, 10, 'updated_at', 'desc');
     }
 
     /**

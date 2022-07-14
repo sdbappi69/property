@@ -44,7 +44,7 @@ export class ReadingComponent implements OnInit, AfterViewInit {
     // Pagination
     length: number;
     pageIndex = 0;
-    pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+    pageSizeOptions: number[] = [10, 25, 50, 100];
     meta: any;
     filter = {
         startdate: '',
@@ -68,7 +68,7 @@ export class ReadingComponent implements OnInit, AfterViewInit {
         // Load pagination data
         this.dataSource.meta$.subscribe((res) => this.meta = res);
         // We load initial data here to avoid affecting life cycle hooks if we load all data on after view init
-        this.dataSource.load('', 0, 0, 'property_id', 'desc');
+        this.dataSource.load('', 0, 10, 'property_id', 'desc');
     }
 
     /**
