@@ -184,11 +184,13 @@ export class AddLeaseComponent implements OnInit, AfterViewInit, OnDestroy  {
             start_date: [(new Date()).toISOString().substring(0, 10), [Validators.required]],
             due_date: [''],
             rent_amount: [''],
+            special_rent_amount: [''],
             due_on: [5]
         });
 
         this.depositsFormGroup = this._formBuilder.group({
             rent_deposit: [''],
+            deposits_rent_percentage: [''],
             utilityDeposits: this.fb.array([ this.utilityDepositFieldCreate() ]),
         });
 
@@ -287,12 +289,14 @@ export class AddLeaseComponent implements OnInit, AfterViewInit, OnDestroy  {
             lease_type_id: lease?.lease_type_id,
             start_date: lease?.start_date,
             rent_amount: lease?.rent_amount,
+            special_rent_amount: lease?.special_rent_amount,
             due_on: lease?.due_on,
         });
 
         this.depositsFormGroup.get('rent_deposit').disable();
         this.depositsFormGroup.patchValue({
-            rent_deposit: lease?.rent_deposit
+            rent_deposit: lease?.rent_deposit,
+            deposits_rent_percentage: lease?.deposits_rent_percentage
         });
 
         this.tenantsFormGroup.get('tenants').disable();

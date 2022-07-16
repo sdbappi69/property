@@ -29,6 +29,8 @@ export class AddLandlordComponent implements OnInit  {
     landlord: LandlordModel;
     landlordID: string;
 
+    showPhoto: any;
+
     @ViewChild('stepper', {static: true }) stepper: MatStepper;
     deleteDialogRef: MatDialogRef<ConfirmationDialogComponent>;
     isAdmin$: Observable<boolean>;
@@ -178,6 +180,28 @@ export class AddLandlordComponent implements OnInit  {
                         }
                     }
                 });
+    }
+
+    onProfilePhotoSelect(file: FileList) {
+        if (file.length > 0) {
+            // this.photoToUpload = file.item(0);
+            // this.photoName = file.item(0).name;
+            // const reader = new FileReader();
+            // reader.onload = (event: any) => {
+            //     this.photoUrl = event.target.result;
+            // };
+            // reader.readAsDataURL(this.photoToUpload);
+
+            // this.loader = true;
+            // // upload to server
+
+            // const formData = new FormData();
+            // formData.append('logo', this.photoToUpload);
+            // formData.append('id',  this.settingId);
+
+            // // Upload Photo
+            // this.uploadPhoto(formData);
+        }
     }
 
     openConfirmationDialog(landlord: LandlordModel) {

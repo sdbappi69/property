@@ -116,6 +116,15 @@
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <mat-form-field class="full-width" color="primary" appearance="outline">
+                                                <mat-label>Special Rent Amount</mat-label>
+                                                <input matInput type="number" min="0" formControlName="special_rent_amount"
+                                                    placeholder="Special Rent Amount">
+                                                <mat-error align="start" *ngIf="formErrors?.special_rent_amount"
+                                                    class="form__error">{{ formErrors.special_rent_amount }}</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <mat-form-field class="full-width" color="primary" appearance="outline">
                                                 <mat-label>Start Date *</mat-label>
                                                 <input matInput (click)="start_date.open()" [matDatepicker]="start_date"
                                                     formControlName="start_date" placeholder="Start Date">
@@ -156,15 +165,26 @@
                                     <form [formGroup]="depositsFormGroup">
                                         <ng-template matStepLabel>Deposits</ng-template>
 
-
-                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                            <mat-form-field class="full-width" color="primary" appearance="outline">
-                                                <mat-label>Rent Deposit Amount</mat-label>
-                                                <input matInput formControlName="rent_deposit"
-                                                    placeholder="Rent Deposit Amount">
-                                                <mat-error align="start" *ngIf="formErrors?.rent_deposit"
-                                                    class="form__error">{{ formErrors.rent_deposit }}</mat-error>
-                                            </mat-form-field>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                                <mat-form-field class="full-width" color="primary" appearance="outline">
+                                                    <mat-label>Rent Deposit Amount</mat-label>
+                                                    <input matInput formControlName="rent_deposit"
+                                                        placeholder="Rent Deposit Amount">
+                                                    <mat-error align="start" *ngIf="formErrors?.rent_deposit"
+                                                        class="form__error">{{ formErrors.rent_deposit }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+    
+                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                                <mat-form-field class="full-width" color="primary" appearance="outline">
+                                                    <mat-label>Deposits Reduced Percentage</mat-label>
+                                                    <input matInput formControlName="deposits_rent_percentage"
+                                                        placeholder="Deposits Reduced Percentage">
+                                                    <mat-error align="start" *ngIf="formErrors?.deposits_rent_percentage"
+                                                        class="form__error">{{ formErrors.deposits_rent_percentage }}</mat-error>
+                                                </mat-form-field>
+                                            </div>
                                         </div>
 
                                         <div formArrayName="utilityDeposits"

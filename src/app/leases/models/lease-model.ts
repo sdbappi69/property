@@ -9,7 +9,9 @@ export class LeaseModel extends BaseModel {
     lease_type_id: string;
     start_date: string;
     rent_amount: string;
+    special_rent_amount: string;
     rent_deposit: string;
+    deposits_rent_percentage: string;
     due_on: string;
     unit_names: string;
     tenant_names: string;
