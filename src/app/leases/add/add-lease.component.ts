@@ -190,7 +190,7 @@ export class AddLeaseComponent implements OnInit, AfterViewInit, OnDestroy  {
 
         this.depositsFormGroup = this._formBuilder.group({
             rent_deposit: [''],
-            deposits_rent_percentage: [''],
+            deposit_deduction_percentage: [''],
             utilityDeposits: this.fb.array([ this.utilityDepositFieldCreate() ]),
         });
 
@@ -296,7 +296,7 @@ export class AddLeaseComponent implements OnInit, AfterViewInit, OnDestroy  {
         this.depositsFormGroup.get('rent_deposit').disable();
         this.depositsFormGroup.patchValue({
             rent_deposit: lease?.rent_deposit,
-            deposits_rent_percentage: lease?.deposits_rent_percentage
+            deposit_deduction_percentage: lease?.deposit_deduction_percentage
         });
 
         this.tenantsFormGroup.get('tenants').disable();
@@ -934,6 +934,10 @@ export class AddLeaseComponent implements OnInit, AfterViewInit, OnDestroy  {
             ...this.paymentMethodsFormGroup.value,
             ...this.leaseSettingsFormGroup.value
         };
+
+        console.log("lease", lease);
+        console.log("this.lease", this.lease);
+        
         const body = Object.assign({}, this.lease, lease);
         body.property_id = this.propertyID;
         body.landlord_id = this.landlordID;
