@@ -12,6 +12,7 @@ import { LeaseDocumentComponent } from './view/document/lease-document.component
 import { TerminateLeaseComponent } from './view/terminate/terminate-lease.component';
 import { LeaseStatementComponent } from './statement/lease-statement.component';
 import { PdfInvoiceComponent } from '../accounting/pdf-invoice/pdf-invoice.component';
+import { MeaterReadingComponent } from './meater_reading/meater-reading.component';
 
 @NgModule({
     imports: [
@@ -29,7 +30,8 @@ import { PdfInvoiceComponent } from '../accounting/pdf-invoice/pdf-invoice.compo
         LeaseDocumentComponent,
         TerminateLeaseComponent,
         LeaseStatementComponent,
-        PdfInvoiceComponent
+        PdfInvoiceComponent,
+        MeaterReadingComponent
     ]
 })
 export class LeaseModule {

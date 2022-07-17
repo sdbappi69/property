@@ -15,6 +15,14 @@
                             </ng-container>
                         </h4>
                     </div>
+                    <!-- <h6 *ngIf="leaseID" type="button" matTooltip="Meter Reading"
+                        matTooltipClass='red-tooltip' [matTooltipPosition]="'above'" 
+                        class="btn btn-link btn-sm btn-just-icon"
+                            routerLink="/leases/{{leaseID}}/lease-meter-reading"><span>Meter Reading</span>
+                    </h6> -->
+                    <a *ngIf="leaseID" class="nav-link" routerLink="/leases/{{leaseID}}/lease-meter-reading">
+                        <p> Meter Reading</p>
+                    </a>
                 </div>
                 <div class="card mt-0">
                     <div class="card-body">

@@ -8,6 +8,7 @@ import { LeaseInvoiceComponent } from './view/invoice/lease-invoice.component';
 import { LeaseDocumentComponent } from './view/document/lease-document.component';
 import { LeaseGeneralSettingResolverService } from '../settings/lease/general/data/lease-general-setting-resolver.service';
 import { LeaseStatementComponent } from './statement/lease-statement.component';
+import { MeaterReadingComponent } from './meater_reading/meater-reading.component';
 
 export const ROUTES: Routes = [
     {
@@ -37,6 +38,10 @@ export const ROUTES: Routes = [
     {
         path: ':id/edit',
         component: AddLeaseComponent
+    },
+    {
+        path: ':id/lease-meter-reading',
+        component: MeaterReadingComponent
     }
 ];
 

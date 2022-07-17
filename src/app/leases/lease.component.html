@@ -117,7 +117,8 @@
                                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                                     <mat-cell *matCellDef="let row" class="button-row">
                                         <ng-container *robiPermission="['edit-lease', 'delete-lease']">
-                                        <ng-container *ngIf="isAdmin$ | async">
+                                            <!-- *ngIf="isAdmin$ | async" -->
+                                        <ng-container >
                                             <button *ngIf="row?.terminated_on == null" mat-raised-button type="button" matTooltip="Edit Lease"
                                                 matTooltipClass='red-tooltip' [matTooltipPosition]="'above'" class="btn btn-link btn-sm btn-just-icon"
                                                     routerLink="{{row.id}}/edit" (click)="onSelected(row)">
