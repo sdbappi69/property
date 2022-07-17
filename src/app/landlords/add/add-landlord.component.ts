@@ -29,7 +29,10 @@ export class AddLandlordComponent implements OnInit  {
     landlord: LandlordModel;
     landlordID: string;
 
-    showPhoto: any;
+    showlogo: any;
+    showSignature: any;
+    logoToUpload: any;
+    signatureToUpload: any;
 
     @ViewChild('stepper', {static: true }) stepper: MatStepper;
     deleteDialogRef: MatDialogRef<ConfirmationDialogComponent>;
@@ -74,6 +77,8 @@ export class AddLandlordComponent implements OnInit  {
                 if (landlord) {
                     this.landlord = landlord;
                     this.populateForm(landlord);
+                    this.showlogo = this.landlord.logo;
+                    this.showSignature = this.landlord.digital_signature;
                 }
                 if (!landlord) {
                     this.landlordService.getById(this.landlordID).subscribe(data => {
@@ -122,9 +127,17 @@ export class AddLandlordComponent implements OnInit  {
                 formData.append(key, body[key]);
             }
         }
+
+        if (this.logoToUpload) {
+            formData.append('logo', this.logoToUpload);
+        };
+        if (this.signatureToUpload) {
+            formData.append('digital_signature', this.signatureToUpload);
+        };
+
         this.loader = true;
 
-        this.landlordService.create(body)
+        this.landlordService.create(formData)
             .subscribe((data) => {
                     this.loader = false;
                     this.notification.showNotification('success', 'Success !! New Landlord created.');
@@ -158,7 +171,22 @@ export class AddLandlordComponent implements OnInit  {
         this.loader = true;
         this.errorInForm.next(false);
 
-        this.landlordService.update(body)
+        const formData = new FormData();
+
+        for (const key in body) {
+            if (body.hasOwnProperty(key)) {
+                formData.append(key, body[key]);
+            }
+        }
+
+        if (this.logoToUpload) {
+            formData.append('logo', this.logoToUpload);
+        };
+        if (this.signatureToUpload) {
+            formData.append('digital_signature', this.signatureToUpload);
+        };
+
+        this.landlordService.update(formData, body.id)
             .subscribe((data) => {
                     this.loader = false;
                     this.notification.showNotification('success', 'Success !! Landlord has been updated.');
@@ -182,25 +210,13 @@ export class AddLandlordComponent implements OnInit  {
                 });
     }
 
-    onProfilePhotoSelect(file: FileList) {
+    onProfilePhotoSelect(file: FileList, context: string) {
         if (file.length > 0) {
-            // this.photoToUpload = file.item(0);
-            // this.photoName = file.item(0).name;
-            // const reader = new FileReader();
-            // reader.onload = (event: any) => {
-            //     this.photoUrl = event.target.result;
-            // };
-            // reader.readAsDataURL(this.photoToUpload);
-
-            // this.loader = true;
-            // // upload to server
-
-            // const formData = new FormData();
-            // formData.append('logo', this.photoToUpload);
-            // formData.append('id',  this.settingId);
-
-            // // Upload Photo
-            // this.uploadPhoto(formData);
+            if (context === 'logo') {
+                this.logoToUpload = file.item(0);
+            } else if (context === 'signature') {
+                this.signatureToUpload = file.item(0);
+            }
         }
     }
 

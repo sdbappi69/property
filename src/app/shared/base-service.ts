@@ -162,8 +162,8 @@ export class BaseService<T extends BaseModel> {
      * Update an existing resource
      * @param item
      */
-    public update(item: T): Observable<T> {
-        return this.httpClient.put<T>(this.getItemUrl(item.id), item);
+    public update(item: T, itemId: string = ''): Observable<T> {
+        return this.httpClient.put<T>(this.getItemUrl(item.id ? item.id : itemId), item);
     }
 
     /**

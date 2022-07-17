@@ -126,29 +126,33 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="logo centerTop">
-                                        <figure class="item simple-text" *ngIf="showPhoto">
-                                            <img class="img" [src]="showPhoto | async" alt="Logo">
+                                        <figure class="item simple-text" *ngIf="showlogo">
+                                            <img class="img" [src]="showlogo" width="200" alt="Logo">
                                         </figure>
                                         <div>
-                                            <input type="file" #logoFileInput class="file-input" accept="image/*" (change)="onProfilePhotoSelect($event.target.files)">
+                                            <input type="file" #logoFileInput class="file-input" accept="image/*" (change)="onProfilePhotoSelect($event.target.files, 'logo')">
                                             <button type="button" mat-button class="mat-raised-button" style="width: 100%; border: 1px solid #ccc;" 
                                                 (click)="logoFileInput.click()">
                                                 <i class="material-icons">attachment</i>
-                                                Logo</button>
+                                                Logo
+                                                <p *ngIf="logoToUpload?.name">{{logoToUpload?.name || ''}}</p>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="logo centerTop">
-                                        <figure class="item simple-text" *ngIf="showPhoto">
-                                            <img class="img" [src]="showPhoto | async" alt="Logo">
+                                        <figure class="item simple-text" *ngIf="showSignature">
+                                            <img class="img" [src]="showSignature" width="200" alt="Logo">
                                         </figure>
                                         <div>
-                                            <input type="file" #logoFileInput class="file-input" accept="image/*" (change)="onProfilePhotoSelect($event.target.files)">
+                                            <input type="file" #logoFileInput2 class="file-input" accept="image/*" (change)="onProfilePhotoSelect($event.target.files, 'signature')">
                                             <button type="button" mat-button class="mat-raised-button" style="width: 100%; border: 1px solid #ccc;" 
-                                                (click)="logoFileInput.click()">
+                                                (click)="logoFileInput2.click()">
                                                 <i class="material-icons">attachment</i>
-                                                Signature</button>
+                                                Signature
+                                                <p *ngIf="signatureToUpload?.name">{{signatureToUpload?.name || ''}}</p>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -227,7 +231,7 @@
 
                             <button *robiPermission="['create-landlord']" class="float-right mat-primary-button" mat-raised-button
                                 color="primary" (click)="createOrUpdate()" [disabled]="!form.valid || loader">
-                                <span>Save Landlord</span>
+                                <span>Save Landlord {{form.valid}}</span>
                             </button>
                         </div>
                     </div>

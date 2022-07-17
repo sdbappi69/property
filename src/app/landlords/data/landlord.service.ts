@@ -8,7 +8,7 @@ import { AppState } from '../../reducers';
 import { selectorIsLandlord, selectorUserID } from '../../authentication/authentication.selectors';
 
 @Injectable({ providedIn: 'root' })
-export class LandlordService extends BaseService<LandlordModel> {
+export class LandlordService extends BaseService<any> {
     private selectedLandlordSource = new BehaviorSubject<LandlordModel | null>(null);
     selectedLandlordChanges$ = this.selectedLandlordSource.asObservable();
 
