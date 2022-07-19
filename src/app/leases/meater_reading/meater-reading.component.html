@@ -2,8 +2,36 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card mt-0 mb-1">
-                    Hello
+                <div class="card mt-0 mb-1 p-5">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Month and Year</mat-label>
+                                <input disabled [value]="showValue(monthYear)" style="border: none;">
+                                <input matInput [matDatepicker]="dp" [hidden]="true"
+                                    [(ngModel)]="monthYear" data-date-format='MM/YYY'>
+
+                                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                                <mat-datepicker #dp
+                                                startView="multi-year"
+                                                (monthSelected)="setMonthAndYear($event, dp)"
+                                                panelClass="example-month-picker">
+                                </mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field class="full-width" color="primary" appearance="outline">
+                                <mat-label>Reading</mat-label>
+                                <input matInput [(ngModel)]="meaterReading" placeholder="reading">
+                                <mat-error *ngIf="formErrors?.reading" class="form__error">{{
+                                    formErrors.reading }}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <button class="float-right mat-primary-button" mat-raised-button style="width: 200px; margin-left: auto;"
+                        color="primary" (click)="createMeaterReading()">
+                        <span>Save Landlord</span>
+                    </button>
                 </div>
             </div>
         </div>
