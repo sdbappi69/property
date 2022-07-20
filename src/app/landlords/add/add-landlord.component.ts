@@ -186,7 +186,7 @@ export class AddLandlordComponent implements OnInit  {
             formData.append('digital_signature', this.signatureToUpload);
         };
 
-        this.landlordService.update(formData, body.id)
+        this.landlordService.updatePatch(formData, body.id)
             .subscribe((data) => {
                     this.loader = false;
                     this.notification.showNotification('success', 'Success !! Landlord has been updated.');

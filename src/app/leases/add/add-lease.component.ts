@@ -783,14 +783,6 @@ export class AddLeaseComponent implements OnInit, AfterViewInit, OnDestroy  {
 
     utilityDepositFieldReplaceAll(): FormArray {
         const formArray =  new FormArray([]);
-        this.utilityDeposits$.subscribe(deposits => {
-            deposits.forEach(deposit => {
-                formArray.push(this.fb.group({
-                    utility_id: deposit?.id,
-                    deposit_amount: deposit?.pivot?.deposit_amount,
-                }))
-            });
-        });
         return formArray;
     }
 
@@ -937,7 +929,7 @@ export class AddLeaseComponent implements OnInit, AfterViewInit, OnDestroy  {
 
         console.log("lease", lease);
         console.log("this.lease", this.lease);
-        
+
         const body = Object.assign({}, this.lease, lease);
         body.property_id = this.propertyID;
         body.landlord_id = this.landlordID;
@@ -951,6 +943,8 @@ export class AddLeaseComponent implements OnInit, AfterViewInit, OnDestroy  {
         delete body.status;
         delete body.utilityDeposits;
         delete body.tenants;*/
+
+        // body.special_rent_amount = '6000';
 
         this.loader = true;
         this.errorInForm.next(false);

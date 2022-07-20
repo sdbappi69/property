@@ -10,7 +10,7 @@
                                 <h6 class="card-title">{{ 'robi.leases.title' | translate }}</h6>
                             </div>
                             <div class="col-6 text-right" *robiPermission="['create-lease']">
-                                <button class="mat-primary-button" *ngIf="isAdmin$ | async" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
+                                <button class="mat-primary-button" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
                                         [routerLink]="['create']">
                                     <mat-icon>add</mat-icon>Add Lease
                                 </button>
