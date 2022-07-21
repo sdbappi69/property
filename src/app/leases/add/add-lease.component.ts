@@ -25,7 +25,9 @@ import { PropertyModel } from '../../properties/models/property-model';
 import { ConfirmationDialogComponent } from '../../shared/delete/confirmation-dialog-component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AuthenticationService } from '../../authentication/authentication.service';
-
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../../reducers';
+import { selectorIsLandlord } from '../../authentication/authentication.selectors';
 @Component({
     selector: 'robi-add-lease',
     styles: [],
@@ -38,6 +40,7 @@ export class AddLeaseComponent implements OnInit, AfterViewInit, OnDestroy  {
 
     unitValues = [];
 
+    isLandlord$: any;
     formErrors: any;
 
     private errorInForm = new BehaviorSubject<boolean>(false);
@@ -166,10 +169,13 @@ export class AddLeaseComponent implements OnInit, AfterViewInit, OnDestroy  {
                 private paymentMethodService: PaymentMethodService,
                 private leaseService: LeaseService,
                 private leaseTypeService: LeaseTypeService,
+                private store: Store<AppState>,
                 private utilityService: UtilityService,
                 private leaseSettingService: LeaseSettingService,
                 private authenticationService: AuthenticationService,
                 private notification: NotificationService) {
+                    
+        this.isLandlord$ = this.store.pipe(select(selectorIsLandlord));
         this.lateFeeFrequencies = LATE_FEE_FREQUENCIES;
         this.newTenant = 'new';
         this.extraChargeTypes = EXTRA_CHARGE_TYPES;
