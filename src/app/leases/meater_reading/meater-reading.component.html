@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card mt-0 mb-1 p-5">
+                <!-- <div class="card mt-0 mb-1 p-5">
                     <h6>Add/Update </h6>
                     <hr />
                     <div class="row">
@@ -34,9 +34,20 @@
                         color="primary" (click)="createMeaterReading()">
                         <span>Save Meter Reading</span>
                     </button>
-                </div>
-
-                <div class="card mt-5 mb-1 p-5">
+                </div> -->
+                <div class="card mb-1 p-5">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="card-title">Lease Meter Reading</h6>
+                        </div>
+                        <div class="col-6 text-right" *robiPermission="['create-lease']">
+                            <button class="mat-primary-button" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
+                                routerLink="/leases/{{leaseID}}/lease-meter-create">
+                                <mat-icon>add</mat-icon>Add Meter Reading
+                            </button>
+                        </div>
+                    </div>
+                    <hr/>
                     <div class="table-responsive">
                         <mat-table #table [dataSource]="leaseInfo?.meter_readings" matSort matSortActive="first_name"
                             matSortDirection="desc" matSortDisableClear>
@@ -72,8 +83,11 @@
                                     <button mat-raised-button
                                         type="button" matTooltipClass='red-tooltip' matTooltip="Edit Meater Rating"
                                         [matTooltipPosition]="'above'" class="btn btn-link btn-sm btn-just-icon"
-                                        (click)="onSelected(row)">
-                                           <!-- (click)="onSelected(row)" -->
+                                        (click)="onSelected(row)"
+                                        [routerLink]="['/leases/'+leaseID+'/lease-meter-create/'+ row.id]" [queryParams]="{ month: row.month, year: row.year, reading: row.reading}"
+                                        >
+                                        <!-- [routerLink]="['/leases/{{leaseID}}/lease-meter-create/{{row.id}}']" [queryParams]="{prop: 'xxx'}" -->
+                                           <!-- (click)="onSelected(row)" ?month={{row.month}}&year={{row.year}}&reading={{reading}}-->
                                         <i class="material-icons">edit</i>
                                     </button>
                                 </mat-cell>

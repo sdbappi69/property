@@ -167,7 +167,7 @@ export class BaseService<T extends BaseModel> {
     }
 
     public updatePatch(item: T, itemId: string = ''): Observable<T> {
-        return this.httpClient.patch<T>(this.getItemUrl(item.id ? item.id : itemId), item);
+        return this.httpClient.post<T>(this.getItemUrl(item.id ? item.id : itemId), item);
     }
 
     /**

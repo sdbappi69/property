@@ -9,6 +9,7 @@ import { LeaseDocumentComponent } from './view/document/lease-document.component
 import { LeaseGeneralSettingResolverService } from '../settings/lease/general/data/lease-general-setting-resolver.service';
 import { LeaseStatementComponent } from './statement/lease-statement.component';
 import { MeaterReadingComponent } from './meater_reading/meater-reading.component';
+import { MeaterReadingAddComponent } from './meater-reading-add/meater-reading-add.component';
 
 export const ROUTES: Routes = [
     {
@@ -42,7 +43,15 @@ export const ROUTES: Routes = [
     {
         path: ':id/lease-meter-reading',
         component: MeaterReadingComponent
-    }
+    },
+    {
+        path: ':id/lease-meter-create',
+        component: MeaterReadingAddComponent
+    },
+    {
+        path: ':id/lease-meter-create/:meaterId',
+        component: MeaterReadingAddComponent
+    },
 ];
 
 
