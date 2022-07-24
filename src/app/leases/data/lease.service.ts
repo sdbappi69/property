@@ -38,9 +38,11 @@ export class LeaseService extends BaseService<LeaseModel> {
     }
 
     public createMeater(item: any): Observable<any> {
-        console.log("super.getResourceUrl()",super.getResourceUrl());
-        
         return this.localHttpClient.post<any>(super.getResourceUrl() + '/meter-readings', item);
+    }
+
+    public updateMeater(item: any): Observable<any> {
+        return this.localHttpClient.post<any>(super.getResourceUrl() + '/meter-readings/update', item);
     }
 
     /**

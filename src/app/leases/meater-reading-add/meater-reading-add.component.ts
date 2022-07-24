@@ -34,6 +34,7 @@ export class MeaterReadingAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.leaseID = this.route.snapshot.paramMap.get('id');
+    this.meaterId = this.route.snapshot.paramMap.get('meaterId');
     let month: string = this.route.snapshot.queryParamMap.get('month');
     let year: string = this.route.snapshot.queryParamMap.get('year');
     this.meaterReading = this.route.snapshot.queryParamMap.get('reading');
@@ -61,28 +62,39 @@ export class MeaterReadingAddComponent implements OnInit {
   }
 
   createMeaterReading() {
-    let data = {
+    let data : any = {
       lease_id: this.leaseID,
       month: parseInt(moment(this.monthYear).format('MM')),
       year: parseInt(moment(this.monthYear).format('YYYY')),
       reading: parseInt(this.meaterReading)
     };
 
-    this.leaseService.createMeater(data).subscribe((data) => {
-      this.notification.showNotification('success', 'Success !! Meater Reading created.');
-      // this.onSaveComplete();
-      this.router.navigate([`/leases/${this.leaseID}/lease-meter-reading`]);
-    },
-      (error) => {
-        this.notification.showNotification('danger', error?.error?.message || 'Check your connection and retry.');
-        return;
-        // if (error.lease === 0) {
-        //   this.notification.showNotification('danger', 'Connection Error !! Nothing created.' +
-        //     ' Check your connection and retry.');
-        //   return;
-        // }
-      }
-    );
+    console.log("this.meaterId", this.meaterId);
+    
+
+    if (!this.meaterId) {
+      this.leaseService.createMeater(data).subscribe((data) => {
+        this.notification.showNotification('success', 'Success !! Meater Reading created.');
+        this.router.navigate([`/leases/${this.leaseID}/lease-meter-reading`]);
+      },
+        (error) => {
+          this.notification.showNotification('danger', error?.error?.message || 'Check your connection and retry.');
+          return;
+        }
+      );
+    } else {
+      data.meter_reading_id = this.meaterId;
+
+      this.leaseService.updateMeater(data).subscribe((data) => {
+        this.notification.showNotification('success', 'Success !! Meater Reading created.');
+        this.router.navigate([`/leases/${this.leaseID}/lease-meter-reading`]);
+      },
+        (error) => {
+          this.notification.showNotification('danger', error?.error?.message || 'Check your connection and retry.');
+          return;
+        }
+      );
+    }
   }
 
 }
