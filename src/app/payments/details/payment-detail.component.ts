@@ -46,7 +46,7 @@ export class PaymentDetailComponent implements OnInit, AfterViewInit  {
                 private dialogRef: MatDialogRef<PaymentDetailComponent>) {
 
         this.payment = row.data;
-        this.isStandAlone = row.isStandAlone;
+        this.isStandAlone = row.isStandAlone;        
     }
 
     ngOnInit() {
