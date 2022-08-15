@@ -31,6 +31,16 @@ import { DueStatementReportComponent } from './reports/admin/due-statement-repor
 import { MonthlyInvoiceReportComponent } from './reports/admin/monthly-invoice-report/monthly-invoice-report.component';
 import { NoticeReportComponent } from './reports/admin/notice-report/notice-report.component';
 import { VatTaxReportComponent } from './reports/admin/vat-tax-report/vat-tax-report.component';
+import { DetailTenantReportComponent } from './reports/landlord/detail-tenant-report/detail-tenant-report.component';
+import { ItemWiseCollectionReportComponent } from './reports/landlord/item-wise-collection-report/item-wise-collection-report.component';
+import { NoticeReportReportComponent } from './reports/landlord/notice-report-report/notice-report-report.component';
+import { ServiceChargeReportComponent } from './reports/landlord/service-charge-report/service-charge-report.component';
+import { TenantCollectionReportComponent } from './reports/tenant/tenant-collection-report/tenant-collection-report.component';
+import { TenantDueStatementReportComponent } from './reports/tenant/tenant-due-statement-report/tenant-due-statement-report.component';
+import { TenantMonthlyInvoiceReportComponent } from './reports/tenant/tenant-monthly-invoice-report/tenant-monthly-invoice-report.component';
+import { TenantNoticeReportComponent } from './reports/tenant/tenant-notice-report/tenant-notice-report.component';
+import { TenantServiceChargeReportComponent } from './reports/tenant/tenant-service-charge-report/tenant-service-charge-report.component';
+import { TenantVatTaxReportComponent } from './reports/tenant/tenant-vat-tax-report/tenant-vat-tax-report.component';
 // import { ReportsComponent } from './reports/reports.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -66,6 +76,16 @@ export const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MonthlyInvoiceReportComponent,
     NoticeReportComponent,
     VatTaxReportComponent,
+    DetailTenantReportComponent,
+    ItemWiseCollectionReportComponent,
+    NoticeReportReportComponent,
+    ServiceChargeReportComponent,
+    TenantCollectionReportComponent,
+    TenantDueStatementReportComponent,
+    TenantMonthlyInvoiceReportComponent,
+    TenantNoticeReportComponent,
+    TenantServiceChargeReportComponent,
+    TenantVatTaxReportComponent,
     // ReportsComponent
   ],
   providers: [

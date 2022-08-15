@@ -9,13 +9,37 @@
                 <div class="row">
                     <div class="col-2">
                         <ul class="nav flex-column nav-pills setting-contens">
-                            <ng-container *ngFor="let menuItem of settingMenuItems">
-                                <li class="nav-item">
-                                    <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: menuItem.activeOption}" 
-                                        class="nav-link" [routerLink]="[menuItem.path]">
-                                        <span class="nav-text"> {{menuItem.title}} </span>
-                                    </a>
-                                </li>
+                            <ng-container *ngIf="isAgent$ | async">
+                                <ng-container *ngFor="let menuItem of menuItemsAdmin">
+                                    <li class="nav-item">
+                                        <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: menuItem.activeOption}" 
+                                            class="nav-link" [routerLink]="[menuItem.path]">
+                                            <span class="nav-text"> {{menuItem.title}} </span>
+                                        </a>
+                                    </li>
+                                </ng-container>
+                            </ng-container>
+
+                            <ng-container *ngIf="isLandlord$ | async">
+                                <ng-container *ngFor="let menuItem of menuItemsLandlord">
+                                    <li class="nav-item">
+                                        <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: menuItem.activeOption}" 
+                                            class="nav-link" [routerLink]="[menuItem.path]">
+                                            <span class="nav-text"> {{menuItem.title}} </span>
+                                        </a>
+                                    </li>
+                                </ng-container>
+                            </ng-container>
+
+                            <ng-container *ngIf="isTenant$ | async">
+                                <ng-container *ngFor="let menuItem of menuItemsTenant">
+                                    <li class="nav-item">
+                                        <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: menuItem.activeOption}" 
+                                            class="nav-link" [routerLink]="[menuItem.path]">
+                                            <span class="nav-text"> {{menuItem.title}} </span>
+                                        </a>
+                                    </li>
+                                </ng-container>
                             </ng-container>
                         </ul>
                     </div>

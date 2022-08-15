@@ -114,7 +114,7 @@ const routes: Routes = [
         path: 'reports',
         loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule),
         canActivate: [AuthGuard],
-        canLoad: [PermGuard],
+        // canLoad: [PermGuard],
         data: {
           permissions: ['view-report']
         }
