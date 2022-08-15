@@ -66,6 +66,7 @@ export const LANDLORD_ROUTES: RouteInfo[] = [
     { path: '/invoices', title: 'robi.sidebar.invoices',  icon: 'receipt', class: '', permission: ['am-landlord'] },
     { path: '/notices', title: 'Vacate Notice',  icon: 'lock_open', class: '', permission: ['am-landlord'] },
     { path: '/landlord/profile', title: 'sidebar.profile',  icon: 'person', class: '', permission: ['am-landlord'] },
+    { path: '/reports', title: 'Reports',  icon: 'account_tree', class: '', permission: ['am-landlord'] },
 ];
 
 export const TENANT_ROUTES: RouteInfo[] = [
@@ -74,6 +75,7 @@ export const TENANT_ROUTES: RouteInfo[] = [
     { path: '/payments', title: 'robi.sidebar.payments',  icon: 'payment', class: '', permission: ['am-tenant'] },
     { path: '/notices', title: 'Vacate Notice',  icon: 'lock_open', class: '', permission: ['am-tenant'] },
     { path: '/tenant/profile', title: 'sidebar.profile',  icon: 'person', class: '', permission: ['am-tenant'] },
+    { path: '/reports', title: 'Reports',  icon: 'account_tree', class: '', permission: ['am-tenant'] },
 ];
 
 @Component({

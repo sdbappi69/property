@@ -25,6 +25,13 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { StatementComponent } from './accounting/statement/statement.component';
 import { PdfStatementComponent } from './accounting/pdf-statement/pdf-statement.component';
+import { CollectionReportComponent } from './reports/admin/collection-report/collection-report.component';
+import { DetailClientSummaryReportComponent } from './reports/admin/detail-client-summary-report/detail-client-summary-report.component';
+import { DueStatementReportComponent } from './reports/admin/due-statement-report/due-statement-report.component';
+import { MonthlyInvoiceReportComponent } from './reports/admin/monthly-invoice-report/monthly-invoice-report.component';
+import { NoticeReportComponent } from './reports/admin/notice-report/notice-report.component';
+import { VatTaxReportComponent } from './reports/admin/vat-tax-report/vat-tax-report.component';
+// import { ReportsComponent } from './reports/reports.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -52,7 +59,14 @@ export const defaultDataServiceConfig: DefaultDataServiceConfig = {
     AdminLayoutComponent,
     ConfirmationDialogComponent,
     StatementComponent,
-    PdfStatementComponent
+    PdfStatementComponent,
+    CollectionReportComponent,
+    DetailClientSummaryReportComponent,
+    DueStatementReportComponent,
+    MonthlyInvoiceReportComponent,
+    NoticeReportComponent,
+    VatTaxReportComponent,
+    // ReportsComponent
   ],
   providers: [
     {

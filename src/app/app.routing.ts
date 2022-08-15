@@ -101,7 +101,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'reports',
+        path: 'reports-old',
         loadChildren: () => import('./accounting/accounting.module').then(m => m.AccountingModule),
         canActivate: [AuthGuardAdmin],
         canLoad: [PermGuard],
@@ -109,6 +109,15 @@ const routes: Routes = [
           permissions: ['view-report']
         }
        // data: { preload: true, delay: true }
+      },
+      {
+        path: 'reports',
+        loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule),
+        canActivate: [AuthGuard],
+        canLoad: [PermGuard],
+        data: {
+          permissions: ['view-report']
+        }
       },
       {
         path: 'profile',
