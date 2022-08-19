@@ -50,6 +50,7 @@
     "classlist.js": "1.1.20150312",
     "core-js": "3.6.5",
     "express": "4.17.1",
+    "file-saver": "^2.0.5",
     "googleapis": "49.0.0",
     "jquery": "3.5.0",
     "jwt-decode": "^2.2.0",
@@ -64,6 +65,7 @@
     "rxjs-compat": "6.5.5",
     "tslib": "^2.3.1",
     "web-animations-js": "2.3.2",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

@@ -98,6 +98,19 @@ export class ReportsComponent implements OnInit {
     console.log("agent", this.isAgent());
     console.log("isTenant", this.isTenant());
     // this.router.navigate(['/login']);
-    
+
+    console.log("this.router.url", this.router.url);
+
+    if (this.router.url === '/reports') {
+      if (this.isAgent()) {
+        this.router.navigate(['/reports/collection_report']);
+      } else if (this.isLandlord()) {
+        this.router.navigate(['/reports/landlord-collection-report']);
+      } else if (this.isTenant()) {
+        this.router.navigate(['/reports/tenant-collection-report']);
+      } else {
+        console.log("999");
+      }
+    } 
   }
 }

@@ -265,4 +265,24 @@ export class BaseService<T extends BaseModel> {
     public nestedUnitUrl(baseEntityID: string, itemID: string) {
         return `${this.getResourceUrl()}/${baseEntityID}/units/${itemID}`;
     }
+
+
+    public reportUnikUrl(contextUrl) {
+        // return `${env.baseURL}` + contextUrl;
+        let url = `${env.baseURL}` + contextUrl;
+
+        return this.httpClient.post(url, {
+            params: new HttpParams()
+                // .set('filter', filter)
+                // .set('page', page.toString())
+                // .set('limit', limit.toString())
+                // .set('sortField', sortField)
+                // .set('sortDirection', sortDirection)
+                // .set('whereField', whereField)
+                // .set('whereValue', whereValue)
+                // .set('endDate', endDate)
+                // .set('startDate', startDate)
+                // .set('status', confirmed)
+        });
+    }
 }

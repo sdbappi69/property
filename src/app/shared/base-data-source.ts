@@ -83,4 +83,18 @@ export class BaseDataSource implements DataSource<any> {
         this.loadingSubject.complete();
     }
 
+    reportLoad(contextUrl: string, filter: string = '', startDate: string = '', endDate: string = '', confirmed: string = '') {
+
+        // this.loadingSubject.next(true);
+
+        return this.service.reportUnikUrl(contextUrl).pipe(
+            catchError(() => of([])),
+            finalize(() => this.loadingSubject.next(false))
+        )
+            .subscribe((res) => {
+                this.dataSubject.next(res['headers']);
+                this.metaSubject.next(res);
+            } );
+    }
+
 }
