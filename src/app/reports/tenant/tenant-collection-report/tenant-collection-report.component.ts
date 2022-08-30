@@ -13,10 +13,15 @@ export class TenantCollectionReportComponent implements OnInit {
   exportList: any[] = [];
   exportHeader: any[] = [];
 
-  constructor(private reportService: ReportService,) { }
+  constructor(private reportService: ReportService) { }
 
   ngOnInit(): void {
     this.dataSource = new ReportDataSource(this.reportService);
+
+    console.log("this.dataSource", this.dataSource);
+    if (this.dataSource) {
+      console.log("this.dataSource", this.dataSource);
+    }
   }
 
   async exportReport() {
@@ -26,8 +31,6 @@ export class TenantCollectionReportComponent implements OnInit {
       if (Object.getOwnPropertyNames(res).length !== 0) {
         this.exportHeader = res['headers'];
         this.exportList = res['reports'];
-
-        console.log("hello", res);
 
         if (this.exportHeader?.length) {
           setTimeout(() => {

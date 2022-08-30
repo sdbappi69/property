@@ -19,16 +19,6 @@
             </div>
         </div>
 
-        <table class="table" style="width: 50%; display: none;">
-            <thead>
-                <tr>
-                    <th scope="col" *ngFor="let header of exportHeader">{{header}}</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let item of exportList">
-                <td *ngFor="let header of exportHeader">{{item[header]}}</td>
-            </tbody>
-        </table>
         
     </div>
 </div>
