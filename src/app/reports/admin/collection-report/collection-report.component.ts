@@ -21,12 +21,13 @@ export class CollectionReportComponent implements AfterViewInit {
   dataSource1 = new MatTableDataSource<any>();
 
   constructor(private reportService: ReportService) { }
-
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
-    this.dataSource1.paginator = this.paginator;
+    // this.dataSource1.paginator = this.paginator;
+    setTimeout(() => {
+      this.dataSource1.paginator = this.paginator
+    }, 1000);
   }
 
   ngOnInit(): void {
@@ -36,7 +37,7 @@ export class CollectionReportComponent implements AfterViewInit {
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
         this.displayedColumns = res['headers'];
-        this.dataSource1 = res['reports'];
+        this.dataSource1 = new MatTableDataSource<any>(res['reports']);;
       }
     });
   }
