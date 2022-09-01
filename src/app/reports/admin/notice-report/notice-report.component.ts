@@ -1,22 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
 import { ReportService } from 'app/reports/report.service';
 import { ReportDataSource } from '../../report-data.source';
 import * as FileSaver from 'file-saver';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-notice-report',
   templateUrl: './notice-report.component.html',
   styleUrls: ['./notice-report.component.scss']
 })
-export class NoticeReportComponent implements OnInit {
+export class NoticeReportComponent implements AfterViewInit {
   dataSource: ReportDataSource;
   exportList: any[] = [];
   exportHeader: any[] = [];
 
+  displayedColumns: string[] = [];
+  dataSource1 = new MatTableDataSource<any>();
+
   constructor(private reportService: ReportService,) { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    // this.dataSource1.paginator = this.paginator;
+    setTimeout(() => {
+      this.dataSource1.paginator = this.paginator
+    }, 1000);
+  }
 
   ngOnInit(): void {
     this.dataSource = new ReportDataSource(this.reportService);
+
+    this.dataSource.reportLoad('/custom-reports/service-charge');
+    this.dataSource.meta$.subscribe((res) => {
+      if (Object.getOwnPropertyNames(res).length !== 0) {
+        this.displayedColumns = res['headers'];
+        this.dataSource1 = new MatTableDataSource<any>(res['reports']);;
+      }
+    });
   }
 
   async exportReport() {
