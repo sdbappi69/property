@@ -31,7 +31,7 @@ export class LandlordVatTaxReportComponent implements AfterViewInit {
   ngOnInit(): void {
     this.dataSource = new ReportDataSource(this.reportService);
 
-    this.dataSource.reportLoad('/custom-reports/service-charge');
+    this.dataSource.reportLoad('/custom-reports/vat-tax');
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
         this.displayedColumns = res['headers'];
