@@ -1,9 +1,15 @@
-import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ReportService } from 'app/reports/report.service';
 import { ReportDataSource } from '../../report-data.source';
 import * as FileSaver from 'file-saver';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+
+import jsPDF from 'jspdf';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
 
 @Component({
   selector: 'app-collection-report',
@@ -12,6 +18,9 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 
 export class CollectionReportComponent implements AfterViewInit {
+  title = 'htmltopdf';
+  @ViewChild('pdfTable') pdfTable: ElementRef;
+
   dataSource: ReportDataSource;
   exportList: any[] = [];
   exportHeader: any[] = [];
@@ -22,6 +31,8 @@ export class CollectionReportComponent implements AfterViewInit {
 
   constructor(private reportService: ReportService) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  // @ViewChild('pdfTable') pdfTable: ElementRef;
+
 
   ngAfterViewInit() {
     // this.dataSource1.paginator = this.paginator;
@@ -80,6 +91,18 @@ export class CollectionReportComponent implements AfterViewInit {
       type: EXCEL_TYPE
     });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  }
+
+  public downloadAsPDF() {
+    const doc = new jsPDF();
+   
+    const pdfTable = this.pdfTable.nativeElement;
+   
+    var html = htmlToPdfmake(pdfTable.innerHTML);
+     
+    const documentDefinition = { content: html };
+    pdfMake.createPdf(documentDefinition).open(); 
+     
   }
 
 }
