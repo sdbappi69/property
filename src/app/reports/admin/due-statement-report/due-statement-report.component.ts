@@ -1,16 +1,24 @@
-import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ReportService } from 'app/reports/report.service';
 import { ReportDataSource } from '../../report-data.source';
 import * as FileSaver from 'file-saver';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 
+import jsPDF from 'jspdf';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
 @Component({
   selector: 'app-due-statement-report',
   templateUrl: './due-statement-report.component.html',
   styleUrls: ['./due-statement-report.component.scss']
 })
 export class DueStatementReportComponent implements AfterViewInit {
+  title = 'htmltopdf';
+  @ViewChild('pdfTable') pdfTable: ElementRef;
+
   dataSource: ReportDataSource;
   exportList: any[] = [];
   exportHeader: any[] = [];
@@ -36,6 +44,9 @@ export class DueStatementReportComponent implements AfterViewInit {
     this.dataSource.reportLoad('/custom-reports/due-statement');
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
+        this.exportList = res['reports'];
+        this.exportHeader = res['headers'];
+
         this.displayedColumns = res['headers'];
         this.dataSource1 = new MatTableDataSource<any>(res['reports']);;
       }
@@ -79,6 +90,23 @@ export class DueStatementReportComponent implements AfterViewInit {
       type: EXCEL_TYPE
     });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  }
+
+  public downloadAsPDF() {
+    const doc = new jsPDF();
+    const pdfTable = this.pdfTable.nativeElement;
+    const html = htmlToPdfmake(pdfTable.innerHTML);
+    const documentDefinition = { content: html };
+    const docDefinition = {
+      pageSize: {
+        width: 891,
+        height: 630
+      },
+      pageOrientation: 'landscape',
+      pageMargins: [0, 0, 0, 0],
+      content: html
+    };
+    pdfMake.createPdf(docDefinition).open();
   }
 
 }
