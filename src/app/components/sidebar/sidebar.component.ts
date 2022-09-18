@@ -66,6 +66,7 @@ export const LANDLORD_ROUTES: RouteInfo[] = [
     { path: '/invoices', title: 'robi.sidebar.invoices',  icon: 'receipt', class: '', permission: ['am-landlord'] },
     { path: '/notices', title: 'Vacate Notice',  icon: 'lock_open', class: '', permission: ['am-landlord'] },
     { path: '/landlord/profile', title: 'sidebar.profile',  icon: 'person', class: '', permission: ['am-landlord'] },
+    { path: '/settings', title: 'robi.sidebar.setting',  icon: 'settings', class: '', permission: ['am-landlord'] },
     { path: '/reports', title: 'Reports',  icon: 'account_tree', class: '', permission: ['am-landlord'] },
 ];
 

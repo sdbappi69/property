@@ -47,8 +47,11 @@ export class CollectionReportComponent implements AfterViewInit {
     this.dataSource.reportLoad('/custom-reports/service-charge');
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
+        this.exportList = res['reports'];
+        this.exportHeader = res['headers'];
+
         this.displayedColumns = res['headers'];
-        this.dataSource1 = new MatTableDataSource<any>(res['reports']);;
+        this.dataSource1 = new MatTableDataSource<any>(res['reports']);
       }
     });
   }
@@ -94,15 +97,11 @@ export class CollectionReportComponent implements AfterViewInit {
   }
 
   public downloadAsPDF() {
-    const doc = new jsPDF();
-   
+    const doc = new jsPDF('l', 'mm', [297, 210]);
     const pdfTable = this.pdfTable.nativeElement;
-   
     var html = htmlToPdfmake(pdfTable.innerHTML);
-     
     const documentDefinition = { content: html };
-    pdfMake.createPdf(documentDefinition).open(); 
-     
+    pdfMake.createPdf(documentDefinition).open();
   }
 
 }

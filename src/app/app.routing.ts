@@ -94,8 +94,8 @@ const routes: Routes = [
       {
         path: 'settings',
         loadChildren: () => import('./settings/setting.module').then(m => m.SettingModule),
-        canActivate: [AuthGuardAdmin],
-        canLoad: [PermGuard],
+        canActivate: [AuthGuard],
+        // canLoad: [PermGuard],
         data: {
           permissions: ['manage-setting']
         }

@@ -9,6 +9,8 @@
                                 <h6>Client Summary Report</h6>
                             </div>
                             <div class="col-6 text-right">
+                                <button class="mat-primary-button mr-3" (click)="downloadAsPDF()">Export To PDF</button>
+
                                 <button class="mat-primary-button" (click)="exportReport()">
                                     <mat-icon>add</mat-icon>Export Client Summary Report
                                 </button>
@@ -19,7 +21,7 @@
             </div>
         </div>
 
-        <table class="table" style="width: 50%; display: none;">
+        <!-- <table class="table" style="width: 50%; display: none;">
             <thead>
                 <tr>
                     <th scope="col" *ngFor="let header of exportHeader">{{header}}</th>
@@ -28,19 +30,36 @@
             <tbody *ngFor="let item of exportList">
                 <td *ngFor="let header of exportHeader">{{item[header]}}</td>
             </tbody>
-        </table>
+        </table> -->
+        <div id="pdfTable" #pdfTable>         
+            <table class="table table-bordered" style="width: 50%; display: none;">
+              <thead>
+                <tr>
+                    <th scope="col" *ngFor="let header of exportHeader">{{header}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of exportList">
+                    <td *ngFor="let header of exportHeader">{{item[header]}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
 
         <div *ngIf="displayedColumns && displayedColumns.length" class="mat-elevation-z8">
-            <table mat-table [dataSource]="dataSource1">
+            <div style="overflow-x: scroll;">
+                <table mat-table [dataSource]="dataSource1">
 
-                <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-                    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-                    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-                </ng-container>
-
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+                    <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+                        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                    </ng-container>
+    
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            
           
             <ng-container>
                 <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons

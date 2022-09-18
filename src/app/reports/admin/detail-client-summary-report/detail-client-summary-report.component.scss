@@ -1,3 +1,32 @@
-table {
+table{
     width: 100%;
-}
+   }
+   @mixin mat-table-columns($columns)
+   {
+       .mat-column-
+       {
+           @each $colName, $props in $columns {
+   
+               $width: map-get($props, 'width');
+   
+               &#{$colName} 
+               {
+                   flex: $width;
+                   min-width: $width;
+   
+                   @if map-has-key($props, 'color') 
+                   {
+                       color: map-get($props, 'color');
+                   }
+               }  
+           }
+       }
+   }
+   
+   @include mat-table-columns((
+   
+       orderid: (width: 6rem, color: gray),
+       date: (width: 9rem),
+       items: (width: 20rem)
+   
+   ));

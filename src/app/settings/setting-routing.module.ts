@@ -14,6 +14,11 @@ export const ROUTES: Routes = [
                 loadChildren: () => import('app/settings/general/general-setting.module').then(m => m.GeneralSettingModule),
                 resolve : { setting: GeneralSettingResolverService}
             },
+            // {
+            //     path: '',
+            //     loadChildren: () => import('app/settings/user/user-setting.module').then(m => m.UserSettingModule),
+            //     resolve : { setting: GeneralSettingResolverService}
+            // },
             {
                 path: 'property',
                 loadChildren: () => import('app/settings/property/property-setting.module')
