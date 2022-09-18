@@ -14,6 +14,10 @@ import { UserSettingService } from '../data/user-setting.service';
 import { NotificationService } from '../../../shared/notification.service';
 import { RoleSettingService } from '../data/role-setting.service';
 
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../../../reducers';
+import { selectorIsAgent } from '../../../authentication/authentication.selectors';
+
 @Component({
     selector: 'robi-user-general-setting',
     templateUrl: './user-general-setting.component.html',
@@ -47,9 +51,12 @@ export class UserGeneralSettingComponent implements OnInit, AfterViewInit {
     dataSource: UserSettingDataSource;
 
     roles: any = [];
+    
+    isAgent$: any;
 
-    constructor(private service: UserSettingService, private notification: NotificationService,
-                private roleService: RoleSettingService, private dialog: MatDialog) {
+    constructor(private store: Store<AppState>, private service: UserSettingService, private notification: NotificationService,
+                private roleService: RoleSettingService, private dialog: MatDialog) {  
+        this.isAgent$ = this.store.pipe(select(selectorIsAgent));
     }
 
     /**
