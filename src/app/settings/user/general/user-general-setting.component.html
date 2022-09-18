@@ -8,14 +8,12 @@
         <div class="card">
             <div class="card-body">
                 <div class="row search-form-section">
-                    <ng-container *ngIf="isAgent$ | async">
-                        <div class="col-3">
-                            <button class="mat-primary-button" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
-                                    (click)="addDialog()">
-                                <mat-icon>add</mat-icon> New User
-                            </button>
-                        </div>    
-                    </ng-container>
+                    <div class="col-3">
+                        <button class="mat-primary-button" [disabled]="(dataSource?.loading$ | async)" mat-button matPrefix mat-stroked-button aria-label="add new"
+                                (click)="addDialog()">
+                            <mat-icon>add</mat-icon> New User
+                        </button>
+                    </div>
                     
                     <div class="col-9">
                         <mat-form-field class="search-form-field">
