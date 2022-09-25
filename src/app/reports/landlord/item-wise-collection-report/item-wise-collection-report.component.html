@@ -9,6 +9,8 @@
                                 <h6>Item Wise Collection Report</h6>
                             </div>
                             <div class="col-6 text-right">
+                                <button class="mat-primary-button mr-3" (click)="downloadAsPDF()">Export To PDF</button>
+
                                 <button class="mat-primary-button" (click)="exportReport()">
                                     Export Item Wise Collection Report
                                 </button>
@@ -19,16 +21,20 @@
             </div>
         </div>
 
-        <table class="table" style="width: 50%; display: none;">
-            <thead>
+        <div id="pdfTable" #pdfTable>         
+            <table class="table table-bordered" style="width: 50%; display: none;">
+              <thead>
                 <tr>
                     <th scope="col" *ngFor="let header of exportHeader">{{header}}</th>
                 </tr>
-            </thead>
-            <tbody *ngFor="let item of exportList">
-                <td *ngFor="let header of exportHeader">{{item[header]}}</td>
-            </tbody>
-        </table>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of exportList">
+                    <td *ngFor="let header of exportHeader">{{item[header]}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
 
         <div *ngIf="displayedColumns && displayedColumns.length" class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource1">

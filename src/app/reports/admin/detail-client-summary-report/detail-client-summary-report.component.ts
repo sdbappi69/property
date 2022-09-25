@@ -22,7 +22,20 @@ export class DetailClientSummaryReportComponent implements OnInit {
 
   dataSource: ReportDataSource;
   exportList: any[] = [];
-  exportHeader: any[] = [];
+  exportHeader: any[] = [
+    "Landlord Name",
+    "Lease",
+    "Tenant Name",
+    "Tenants Phone",
+    "Tenants Email",
+    "Property Name",
+    "Property Type",
+    "Unit Name",
+    "Location",
+    "Unit Type",
+    "Unit Floor",
+    "Rent Amount"
+];
 
   displayedColumns: string[] = [];
   dataSource1 = new MatTableDataSource<any>();
@@ -46,7 +59,7 @@ export class DetailClientSummaryReportComponent implements OnInit {
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
         this.exportList = res['reports'];
-        this.exportHeader = res['headers'];
+        // this.exportHeader = res['headers'];
 
         this.displayedColumns = res['headers'];
         this.dataSource1 = new MatTableDataSource<any>(res['reports']);
@@ -59,7 +72,7 @@ export class DetailClientSummaryReportComponent implements OnInit {
 
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
-        this.exportHeader = res['headers'];
+        // this.exportHeader = res['headers'];
         this.exportList = res['reports'];
 
         console.log("hello", res);

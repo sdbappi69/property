@@ -100,7 +100,15 @@ export class CollectionReportComponent implements AfterViewInit {
     const doc = new jsPDF('l', 'mm', [297, 210]);
     const pdfTable = this.pdfTable.nativeElement;
     var html = htmlToPdfmake(pdfTable.innerHTML);
-    const documentDefinition = { content: html };
+    const documentDefinition = { 
+      pageSize: {
+        width: 891,
+        height: 630
+      },
+      pageOrientation: 'landscape',
+      pageMargins: [0, 0, 0, 0],
+      content: html
+    };
     pdfMake.createPdf(documentDefinition).open();
   }
 

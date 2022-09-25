@@ -1,18 +1,40 @@
-import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ReportService } from 'app/reports/report.service';
 import { ReportDataSource } from '../../report-data.source';
 import * as FileSaver from 'file-saver';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+
+
+import jsPDF from 'jspdf';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
 @Component({
   selector: 'app-detail-tenant-report',
   templateUrl: './detail-tenant-report.component.html',
   styleUrls: ['./detail-tenant-report.component.scss']
 })
 export class DetailTenantReportComponent implements AfterViewInit {
+  title = 'htmltopdf';
+  @ViewChild('pdfTable') pdfTable: ElementRef;
+
   dataSource: ReportDataSource;
   exportList: any[] = [];
-  exportHeader: any[] = [];
+  exportHeader: any[] = [
+  "Landlord Name",
+  "Lease",
+  "Tenant Name",
+  "Tenants Phone",
+  "Tenants Email",
+  "Property Name",
+  "Property Type",
+  "Unit Name",
+  "Location",
+  "Unit Type",
+  "Unit Floor",
+  "Rent Amount"];
 
   displayedColumns: string[] = [];
   dataSource1 = new MatTableDataSource<any>();
@@ -33,6 +55,8 @@ export class DetailTenantReportComponent implements AfterViewInit {
     this.dataSource.reportLoad('/custom-reports/details-tenant-summary');
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
+        this.exportList = res['reports'];
+
         this.displayedColumns = res['headers'];
         this.dataSource1 = new MatTableDataSource<any>(res['reports']);;
       }
@@ -44,7 +68,7 @@ export class DetailTenantReportComponent implements AfterViewInit {
 
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
-        this.exportHeader = res['headers'];
+        // this.exportHeader = res['headers'];
         this.exportList = res['reports'];
 
         console.log("hello", res);
@@ -76,6 +100,23 @@ export class DetailTenantReportComponent implements AfterViewInit {
       type: EXCEL_TYPE
     });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  }
+
+  public downloadAsPDF() {
+    const doc = new jsPDF();
+    const pdfTable = this.pdfTable.nativeElement;
+    var html = htmlToPdfmake(pdfTable.innerHTML);
+    const documentDefinition = { content: html };
+    var docDefinition = {
+      pageSize: {
+        width: 891,
+        height: 630
+      },
+      pageOrientation: 'landscape',
+      pageMargins: [0, 0, 0, 0],
+      content: html
+    };
+    pdfMake.createPdf(docDefinition).open();
   }
 
 }
