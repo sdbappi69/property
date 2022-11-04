@@ -33,7 +33,7 @@ export class DetailTenantReportComponent implements AfterViewInit {
   "Unit Name",
   "Location",
   "Unit Type",
-  "Unit Floor",
+  "Floor Number",
   "Rent Amount"];
 
   displayedColumns: string[] = [];

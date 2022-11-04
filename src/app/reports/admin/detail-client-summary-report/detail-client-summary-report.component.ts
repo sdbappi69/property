@@ -33,7 +33,7 @@ export class DetailClientSummaryReportComponent implements OnInit {
     "Unit Name",
     "Location",
     "Unit Type",
-    "Unit Floor",
+    "Floor Number",
     "Rent Amount"
 ];
 
