@@ -31,7 +31,7 @@ export class UnitComponent implements OnInit, AfterViewInit {
         'unit_mode',
         // 'unit_type_id',
         'total_rooms',
-        'bed_rooms',
+        // 'bed_rooms',
         'actions'
     ];
 

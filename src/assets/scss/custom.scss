@@ -218,3 +218,17 @@ a {
   border: 1px solid #ccc;
   color: rgb(27, 27, 27);
 }
+
+
+.report-table-responsive {
+  overflow-x: scroll;
+
+  table {
+    width: max-content !important;
+    min-width: 100%;
+
+    th, td {
+      padding: 20px;
+    }
+  }
+}
