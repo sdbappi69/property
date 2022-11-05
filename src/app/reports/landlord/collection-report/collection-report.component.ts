@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import { ReportService } from 'app/reports/report.service';
 import { ReportDataSource } from '../../report-data.source';
 import * as FileSaver from 'file-saver';
@@ -12,7 +13,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake';
 
 @Component({
-  selector: 'app-collection-report',
+  selector: 'robi-app-collection-report',
   templateUrl: './collection-report.component.html',
   styleUrls: ['./collection-report.component.scss']
 })
@@ -23,7 +24,14 @@ export class LandlordCollectionReportComponent implements AfterViewInit {
   dataSource: ReportDataSource;
   exportList: any[] = [];
   exportHeader: any[] = [];
-
+  allDataList: any[] = [];
+  searchData: any = {
+    landlord: null,
+    lease: null,
+    tenant: null,
+    property: null,
+    propertyType: null
+  }
   displayedColumns: string[] = [];
   dataSource1 = new MatTableDataSource<any>();
 
@@ -44,6 +52,7 @@ export class LandlordCollectionReportComponent implements AfterViewInit {
     this.dataSource.reportLoad('/custom-reports/collection-report');
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
+        this.exportList = res['reports'];
         this.exportList = res['reports'];
         this.exportHeader = res['headers'];
 
@@ -88,6 +97,32 @@ export class LandlordCollectionReportComponent implements AfterViewInit {
       type: EXCEL_TYPE
     });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  }
+
+  modelChanged() {
+    let foundDevices: any = this.allDataList;
+
+    foundDevices = this.searchData.landlord?.length ? this.allDataList.filter(item => {
+      return this.searchData.landlord?.length === 0 || item['Landlord Name'].toLowerCase().includes(this.searchData.landlord.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData?.lease?.length ? this.allDataList.filter(item => {
+      return this.searchData.lease?.length === 0 || item['Lease'].toLowerCase().includes(this.searchData.lease.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData?.property?.length ? this.allDataList.filter(item => {
+      return this.searchData.property?.length === 0 || item['Property Name'].toLowerCase().includes(this.searchData.property.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData.propertyType ? this.allDataList.filter(item => {
+      return item['Property Type'] === this.searchData.propertyType
+    }) : foundDevices;
+
+    foundDevices = this.searchData.tenant?.length ? this.allDataList.filter(item => {
+      return this.searchData.tenant.length === 0 || item['Tenant Name'].toLowerCase().includes(this.searchData.tenant.toLowerCase())
+    }) : foundDevices;
+
+    this.dataSource1 = foundDevices;
   }
 
   public downloadAsPDF() {

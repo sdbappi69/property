@@ -39,7 +39,16 @@ export class DetailClientSummaryReportComponent implements OnInit {
 
   displayedColumns: string[] = [];
   dataSource1 = new MatTableDataSource<any>();
-
+  searchData: any = {
+    landlord: null,
+    lease: null,
+    tenant: null,
+    property: null,
+    propertyType: null,
+    propertyCode: null
+  }
+  allDataList: any[] = [];
+  
   constructor(private reportService: ReportService,) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -60,6 +69,7 @@ export class DetailClientSummaryReportComponent implements OnInit {
       if (Object.getOwnPropertyNames(res).length !== 0) {
         this.exportList = res['reports'];
         // this.exportHeader = res['headers'];
+        this.allDataList = res['reports'];
 
         this.displayedColumns = res['headers'];
         this.dataSource1 = new MatTableDataSource<any>(res['reports']);
@@ -74,8 +84,6 @@ export class DetailClientSummaryReportComponent implements OnInit {
       if (Object.getOwnPropertyNames(res).length !== 0) {
         // this.exportHeader = res['headers'];
         this.exportList = res['reports'];
-
-        console.log("hello", res);
 
         if (this.exportHeader?.length) {
           setTimeout(() => {
@@ -121,6 +129,36 @@ export class DetailClientSummaryReportComponent implements OnInit {
       content: html
     };
     pdfMake.createPdf(docDefinition).open();
+  }
+
+  modelChanged() {
+    let foundDevices: any = this.allDataList;
+
+    foundDevices = this.searchData.landlord?.length ? this.allDataList.filter(item => {
+      return this.searchData.landlord?.length === 0 || item['Landlord Name'].toLowerCase().includes(this.searchData.landlord.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData?.lease?.length ? this.allDataList.filter(item => {
+      return this.searchData.lease?.length === 0 || item['Lease'].toLowerCase().includes(this.searchData.lease.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData?.property?.length ? this.allDataList.filter(item => {
+      return this.searchData.property?.length === 0 || item['Property Name'].toLowerCase().includes(this.searchData.property.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData.propertyType ? this.allDataList.filter(item => {
+      return item['Property Type'] === this.searchData.propertyType
+    }) : foundDevices;
+
+    foundDevices = this.searchData.tenant?.length ? this.allDataList.filter(item => {
+      return this.searchData.tenant.length === 0 || item['Tenant Name'].toLowerCase().includes(this.searchData.tenant.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData.propertyCode?.length ? this.allDataList.filter(item => {
+      return this.searchData.propertyCode.length === 0 || item['Property Code'].toLowerCase().includes(this.searchData?.propertyCode.toLowerCase())
+    }) : foundDevices;
+
+    this.dataSource1 = foundDevices;
   }
 
 }

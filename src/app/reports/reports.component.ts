@@ -81,7 +81,7 @@ export class ReportsComponent implements OnInit {
 
 
   constructor(private store: Store<AppState>, private router: Router, private auth: AuthenticationService,
-    private authenticationService: AuthenticationService,) {
+    private authenticationService: AuthenticationService) {
 
     this.isAgent$ = this.store.pipe(select(selectorIsAgent));
     this.isLandlord$ = this.store.pipe(select(selectorIsLandlord));

@@ -26,6 +26,14 @@ export class VatTaxReportComponent implements AfterViewInit {
   exportHeader: any[] = [];
   displayedColumns: string[] = [];
   dataSource1 = new MatTableDataSource<any>();
+  allDataList: any[] = [];
+  searchData: any = {
+    landlord: null,
+    lease: null,
+    tenant: null,
+    property: null,
+    propertyType: null
+  }
 
   constructor(private reportService: ReportService,) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -45,6 +53,7 @@ export class VatTaxReportComponent implements AfterViewInit {
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
         this.exportList = res['reports'];
+        this.allDataList = res['reports'];
         this.exportHeader = res['headers'];
 
         this.displayedColumns = res['headers'];
@@ -90,6 +99,32 @@ export class VatTaxReportComponent implements AfterViewInit {
       type: EXCEL_TYPE
     });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  }
+
+  modelChanged() {
+    let foundDevices: any = this.allDataList;
+
+    foundDevices = this.searchData.landlord?.length ? this.allDataList.filter(item => {
+      return this.searchData.landlord?.length === 0 || item['Landlord Name'].toLowerCase().includes(this.searchData.landlord.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData?.lease?.length ? this.allDataList.filter(item => {
+      return this.searchData.lease?.length === 0 || item['Lease'].toLowerCase().includes(this.searchData.lease.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData?.property?.length ? this.allDataList.filter(item => {
+      return this.searchData.property?.length === 0 || item['Property Name'].toLowerCase().includes(this.searchData.property.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData.propertyType ? this.allDataList.filter(item => {
+      return item['Property Type'] === this.searchData.propertyType
+    }) : foundDevices;
+
+    foundDevices = this.searchData.tenant?.length ? this.allDataList.filter(item => {
+      return this.searchData.tenant.length === 0 || item['Tenant Name'].toLowerCase().includes(this.searchData.tenant.toLowerCase())
+    }) : foundDevices;
+
+    this.dataSource1 = foundDevices;
   }
 
   public downloadAsPDF() {

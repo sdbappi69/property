@@ -36,6 +36,54 @@
             </table>
         </div>
 
+        <div class="card mt-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <mat-form-field class="full-width" color="primary" appearance="outline">
+                            <mat-label>Landlord Name</mat-label>
+                            <input [(ngModel)]="searchData.landlord" matInput placeholder="Landlord Name" 
+                            (ngModelChange)="modelChanged()">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field class="full-width" color="primary" appearance="outline">
+                            <mat-label>Lease</mat-label>
+                            <input matInput placeholder="Lease" [(ngModel)]="searchData.lease"
+                                (ngModelChange)="modelChanged()">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field class="full-width" color="primary" appearance="outline">
+                            <mat-label>Tenant Name</mat-label>
+                            <input matInput placeholder="Tenant Name" [(ngModel)]="searchData.tenant"
+                            (ngModelChange)="modelChanged()">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field class="full-width" color="primary" appearance="outline">
+                            <mat-label>Property Name</mat-label>
+                            <input matInput placeholder="Property Name" [(ngModel)]="searchData.property"
+                            (ngModelChange)="modelChanged()">
+                        </mat-form-field>
+                    </div>
+                    <!-- [hidden]="!(isAdmin$ | async)" -->
+                    <div class="col-4" >
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select a Property Type</mat-label>
+                            <!-- (selectionChange)="statusFilter($event.value)" -->
+                            <mat-select [(ngModel)]="searchData.propertyType"
+                            (ngModelChange)="modelChanged()">
+                                <mat-option>None</mat-option>
+                                <mat-option value="Residential">Residential</mat-option>
+                                <mat-option value="Commercial">Commercial</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div *ngIf="displayedColumns && displayedColumns.length" class="mat-elevation-z8">
             <div class="report-table-responsive">
                 <table mat-table [dataSource]="dataSource1">
