@@ -41,6 +41,10 @@ import { TenantMonthlyInvoiceReportComponent } from './reports/tenant/tenant-mon
 import { TenantNoticeReportComponent } from './reports/tenant/tenant-notice-report/tenant-notice-report.component';
 import { TenantServiceChargeReportComponent } from './reports/tenant/tenant-service-charge-report/tenant-service-charge-report.component';
 import { TenantVatTaxReportComponent } from './reports/tenant/tenant-vat-tax-report/tenant-vat-tax-report.component';
+import { LandlordCollectionReportComponent } from './reports/landlord/collection-report/collection-report.component';
+import { LandlordDueStatementReportComponent } from './reports/landlord/due-statement-report/due-statement-report.component';
+import { LandlordMonthlyInvoiceReportComponent } from './reports/landlord/monthly-invoice-report/monthly-invoice-report.component';
+import { LandlordVatTaxReportComponent } from './reports/landlord/vat-tax-report/vat-tax-report.component';
 // import { ReportsComponent } from './reports/reports.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -71,6 +75,10 @@ export const defaultDataServiceConfig: DefaultDataServiceConfig = {
     StatementComponent,
     PdfStatementComponent,
     CollectionReportComponent,
+    LandlordCollectionReportComponent,
+    LandlordMonthlyInvoiceReportComponent,
+    LandlordDueStatementReportComponent,
+    LandlordVatTaxReportComponent,
     DetailClientSummaryReportComponent,
     DueStatementReportComponent,
     MonthlyInvoiceReportComponent,

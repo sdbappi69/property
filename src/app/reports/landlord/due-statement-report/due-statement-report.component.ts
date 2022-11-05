@@ -23,7 +23,13 @@ export class LandlordDueStatementReportComponent implements AfterViewInit {
   dataSource: ReportDataSource;
   exportList: any[] = [];
   exportHeader: any[] = [];
-
+  allDataList: any[] = [];
+  searchData: any = {
+    lease: null,
+    tenant: null,
+    property: null,
+    propertyType: null
+  }
   displayedColumns: string[] = [];
   dataSource1 = new MatTableDataSource<any>();
 
@@ -44,6 +50,7 @@ export class LandlordDueStatementReportComponent implements AfterViewInit {
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
         this.exportList = res['reports'];
+        this.allDataList = res['reports'];
         this.exportHeader = res['headers'];
 
         this.displayedColumns = res['headers'];
@@ -108,4 +115,25 @@ export class LandlordDueStatementReportComponent implements AfterViewInit {
     pdfMake.createPdf(docDefinition).open();
   }
 
+  modelChanged() {
+    let foundDevices: any = this.allDataList;
+
+    foundDevices = this.searchData?.lease?.length ? this.allDataList.filter(item => {
+      return this.searchData.lease?.length === 0 || item['Lease'].toLowerCase().includes(this.searchData.lease.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData?.property?.length ? this.allDataList.filter(item => {
+      return this.searchData.property?.length === 0 || item['Property Name'].toLowerCase().includes(this.searchData.property.toLowerCase())
+    }) : foundDevices;
+
+    foundDevices = this.searchData.propertyType ? this.allDataList.filter(item => {
+      return item['Property Type'] === this.searchData.propertyType
+    }) : foundDevices;
+
+    foundDevices = this.searchData.tenant?.length ? this.allDataList.filter(item => {
+      return this.searchData.tenant.length === 0 || item['Tenant Name'].toLowerCase().includes(this.searchData.tenant.toLowerCase())
+    }) : foundDevices;
+
+    this.dataSource1 = foundDevices;
+  }
 }

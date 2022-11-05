@@ -26,7 +26,6 @@ export class LandlordCollectionReportComponent implements AfterViewInit {
   exportHeader: any[] = [];
   allDataList: any[] = [];
   searchData: any = {
-    landlord: null,
     lease: null,
     tenant: null,
     property: null,
@@ -53,7 +52,7 @@ export class LandlordCollectionReportComponent implements AfterViewInit {
     this.dataSource.meta$.subscribe((res) => {
       if (Object.getOwnPropertyNames(res).length !== 0) {
         this.exportList = res['reports'];
-        this.exportList = res['reports'];
+        this.allDataList = res['reports'];
         this.exportHeader = res['headers'];
 
         this.displayedColumns = res['headers'];
@@ -101,10 +100,6 @@ export class LandlordCollectionReportComponent implements AfterViewInit {
 
   modelChanged() {
     let foundDevices: any = this.allDataList;
-
-    foundDevices = this.searchData.landlord?.length ? this.allDataList.filter(item => {
-      return this.searchData.landlord?.length === 0 || item['Landlord Name'].toLowerCase().includes(this.searchData.landlord.toLowerCase())
-    }) : foundDevices;
 
     foundDevices = this.searchData?.lease?.length ? this.allDataList.filter(item => {
       return this.searchData.lease?.length === 0 || item['Lease'].toLowerCase().includes(this.searchData.lease.toLowerCase())
