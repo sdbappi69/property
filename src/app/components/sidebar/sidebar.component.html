@@ -2,7 +2,8 @@
     <!-- <figure class="item simple-text top-space">
         <figcaption class="caption"> {{companyName}} </figcaption>
     </figure> -->
-    <img src="../../../assets/img/apple-icon.png" width="150" />
+    <img *ngIf="companyLogo" [src]="companyLogo" width="150" />
+    <img *ngIf="!companyLogo" src="../../../assets/img/apple-icon.png" width="150" />
 </div>
 
 <div class="sidebar-wrapper">

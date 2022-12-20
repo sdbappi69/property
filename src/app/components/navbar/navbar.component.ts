@@ -3,7 +3,9 @@ import { ADMIN_ROUTES } from '../sidebar/sidebar.component';
 import {Location} from '@angular/common';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { selectorUserFirstAndLastNames } from '../../authentication/authentication.selectors';
+import { selectorUserFirstAndLastNames,
+    selectorIsLandlord,
+    selectorIsTenant, } from '../../authentication/authentication.selectors';
 import { AuthenticationService } from '../../authentication/authentication.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -24,11 +26,17 @@ export class NavbarComponent implements OnInit {
 
     userNames$: any;
     isAdmin$: Observable<boolean>;
+    isLandlord$: any;
+    isTenant$: any;
+
     constructor(location: Location,  private element: ElementRef,
                 private authenticationService: AuthenticationService,
                 private auth: AuthenticationService,
                 private router: Router, private store: Store) {
         this.isAdmin$ = this.authenticationService.isAdmin();
+        this.isLandlord$ = this.store.pipe(select(selectorIsLandlord));
+        this.isTenant$ = this.store.pipe(select(selectorIsTenant));
+
         this.location = location;
         this.sidebarVisible = false;
     }

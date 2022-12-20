@@ -95,12 +95,17 @@ export class SidebarComponent implements OnInit {
     isTenant$: any;
     isAgent$: any;
     companyName: string;
+    companyLogo: string;
+
   constructor(private store: Store<AppState>, private auth: AuthenticationService) {
       this.scopes$ = this.store.pipe(select(selectorUserScopes));
       this.store.pipe(select(selectorCompanyName)).subscribe(name => this.companyName = name);
       this.isAgent$ = this.store.pipe(select(selectorIsAgent));
       this.isLandlord$ = this.store.pipe(select(selectorIsLandlord));
       this.isTenant$ = this.store.pipe(select(selectorIsTenant));
+
+      let user = localStorage.getItem("signal-AUTH") ? JSON.parse(localStorage.getItem("signal-AUTH")) : null;
+      this.companyLogo = user?.logo ? user.logo : null
   }
 
   ngOnInit() {
